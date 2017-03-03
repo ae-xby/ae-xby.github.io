@@ -12,4 +12,4 @@ output
 *.tmp
 *.DS_Store
 ._*
-.Trashes
+.Trashes*.psd
