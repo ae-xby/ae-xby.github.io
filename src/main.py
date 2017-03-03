@@ -64,6 +64,10 @@ def generate(ctx):
 
 def preview(path):
     from urllib import pathname2url
+    assets_symbol = os.path.join(settings.OUTPUT_PATH, 'assets')
+
+    if not os.path.exists(assets_symbol):
+        os.symlink(settings.ASSETS_PATH, assets_symbol)
 
     uri = 'file:{}'.format(pathname2url(os.path.join(path, 'index.html')))
     webbrowser.open(uri)

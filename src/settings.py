@@ -9,3 +9,5 @@ TEMPLATE_PATH = root('templates')
 ASSETS_PATH = root('assets')
 DOCS_PATH = root('docs')
 BASE_URL = 'https://www.xiaobaiyangyixun.com'
+
+LANGUAGE = "cn"
