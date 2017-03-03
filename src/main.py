@@ -37,11 +37,11 @@ def parse_markdown(filename):
 
     with open(filename) as fb:
         ctx, content = meta.parse(fb.read())
-        ctx.update(default_settings())
         ctx['content'] = markdown(content)
         ctx['url'] = '/{bn}.html'.format(bn=bn)
         ctx['output_filename'] = '{bn}.html'.format(bn=bn)
         _patch_ctx(ctx)
+        ctx.update(default_settings())
         return ctx
 
 

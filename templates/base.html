@@ -23,56 +23,48 @@
 
     <title>{{ title }}</title>
 
+    <!-- Web Fonts -->
 
+    {% block css_compulsory %}
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    {% endblock %}
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="assets/css/headers/header-v6.css">
-    <link rel="stylesheet" href="assets/css/footers/footer-v2.css">
+    <!-- <link rel="stylesheet" href="assets/css/footers/footer-v2.css"> -->
+    <link rel="stylesheet" href="assets/css/footers/footer-v7.css">
 
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="assets/plugins/animate.css">
-    <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
-    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/plugins/parallax-slider/css/parallax-slider.css">
-    <link rel="stylesheet" href="assets/plugins/fancybox/source/jquery.fancybox.css">
-    <link rel="stylesheet" href="assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+    {% block css_plugins %}{% endblock %}
+
+    {% if STYLE_SWITCHER_ON %}
+    <!-- Style Switcher -->
+    <link rel="stylesheet" href="assets/css/plugins/style-switcher.css">
+    {% endif %}
 
     <!-- CSS Theme -->
-    <link rel="stylesheet" href="assets/css/theme-colors/blue.css" id="style_color">
-    <link rel="stylesheet" href="assets/css/theme-skins/dark.css">
-
+    {% block css_theme %}
+    <link rel="stylesheet" href="assets/css/theme-colors/{{ THEME_COLOR }}.css" id="style_color">
+    {% endblock %}
     <!-- CSS Customization -->
     <link rel="stylesheet" href="assets/css/custom.css">
 
   </head>
-  <body class="header-fixed promo-padding-top">
+  <body{% block body_attrs %}{% endblock %}>
 
-    <div class="wrapper">
-
-      {% include "header.html" %}
-
-      {% block content %}{% endblock %}
-
-      {% include "footer.html" %}
-
-      {% block style_switcher %}
-        {% include "style_switcher.html" %}
-      {% endblock %}
-
-
-    </div><!--/wrapper-->
-
+    {% block container %}
+    {% endblock %}
 
     {% include "js.html" %}
-    {% block js %}{% endblock %}
 
+    {% block js_plugins %}
     <!--[if lt IE 9]>
-    <script src="assets/plugins/respond.js"></script>
-    <script src="assets/plugins/html5shiv.js"></script>
-    <script src="assets/plugins/placeholder-IE-fixes.js"></script>
+      <script src="assets/plugins/respond.js"></script>
+      <script src="assets/plugins/html5shiv.js"></script>
+      <script src="assets/plugins/placeholder-IE-fixes.js"></script>
     <![endif]-->
+    {% endblock %}
+
   </body>
 </html>
