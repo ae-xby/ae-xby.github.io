@@ -2,6 +2,7 @@
 
 import os
 import webbrowser
+import datetime
 import mistune
 from mistune_contrib import meta
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -73,11 +74,34 @@ def preview(path):
     webbrowser.open(uri)
 
 
-def main():
+def rm(fp):
+    if os.path.isdir(fp):
+        shutil.rmtree(fp)
+    else:
+        os.unlink(fp)
 
+def publish():
+    import shutil
+    if os.path.exists(settings.OUTPUT_PATH):
+        shutil.rmtree(settings.OUTPUT_PATH)
+    _main()
+    shutil.copytree('assets', os.path.join(settings.OUTPUT_PATH, 'assets'))
+    os.system('git checkout master')
+    map(rm, os.listdir(settings.PROJECT_PATH))
+    os.system('cp -r {}/* {}/'.format(settings.OUTPUT_PATH, settings.PROJECT_PATH))
+    os.system('git add -u .')
+    os.system('git commit -m "Updated site on {}"'.format(datetime.datetime.now().strftime('%Y-%m-%d %M:%S')))
+
+
+
+
+def _main():
     map(generate,
         map(render_template,
             map(parse_markdown, list_docs(settings.DOCS_PATH))))
+
+def main():
+    _main()
     preview(settings.OUTPUT_PATH)
 
 
