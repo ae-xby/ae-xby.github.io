@@ -1,0 +1,15 @@
+.venv
+output
+
+*.py[co]
+*.zip
+*.tgz
+*.tar.gz
+*.tbz2
+*.tar.bz2
+*.o
+.netrwhist
+*.tmp
+*.DS_Store
+._*
+.Trashes

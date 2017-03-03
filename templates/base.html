@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="cn">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="{{ description }}" />
+
+    <!--  Meta for Smart App Banner -->
+    <!-- <meta name="apple-itunes-app" content="app-id=, app-argument=" -->
+    <!-- End -->
+
+    <!--  Meta for OpenGraph -->
+    <meta property="og:site_name" content="{{ og_site_name }}">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ BASE_URL }}{{ url }}">
+    <meta property="og:description" content="{{ description }}">
+    <!-- End -->
+
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    {% include "header.html" %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% include "footer.html" %}
+  </body>
+</html>
