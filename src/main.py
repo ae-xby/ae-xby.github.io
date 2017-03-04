@@ -55,55 +55,45 @@ def generate(ctx):
     html = ctx['html']
     fn = os.path.join(settings.OUTPUT_PATH, ctx['output_filename'])
 
-    if not os.path.exists(settings.OUTPUT_PATH):
-        os.makedirs(settings.OUTPUT_PATH)
-
     with open(fn, 'wb') as fb:
         fb.write(html.encode('utf8'))
         print("Generated {}".format(ctx['url']))
 
 
-def preview(path):
+def preview():
     from urllib import pathname2url
-    assets_symbol = os.path.join(settings.OUTPUT_PATH, 'assets')
-
-    if not os.path.exists(assets_symbol):
-        os.symlink(settings.ASSETS_PATH, assets_symbol)
-
-    uri = 'file:{}'.format(pathname2url(os.path.join(path, 'index.html')))
+    uri = 'file:{}'.format(pathname2url(
+        os.path.join(settings.OUTPUT_PATH, 'index.html')))
     webbrowser.open(uri)
 
 
-def rm(fp):
-    if os.path.isdir(fp):
-        shutil.rmtree(fp)
-    else:
-        os.unlink(fp)
-
 def publish():
-    import shutil
-    if os.path.exists(settings.OUTPUT_PATH):
-        shutil.rmtree(settings.OUTPUT_PATH)
-    _main()
-    shutil.copytree('assets', os.path.join(settings.OUTPUT_PATH, 'assets'))
-    os.system('git checkout master')
-    map(rm, os.listdir(settings.PROJECT_PATH))
-    os.system('cp -r {}/* {}/'.format(settings.OUTPUT_PATH, settings.PROJECT_PATH))
+    convert()
+    os.system('rsync -avz {}/ {}'.format(
+        settings.ASSETS_PATH,
+        os.path.join(settings.OUTPUT_PATH, 'assets')
+    ))
+    os.chdir(os.path.join(settings.OUTPUT_PATH))
     os.system('git add -u .')
-    os.system('git commit -m "Updated site on {}"'.format(datetime.datetime.now().strftime('%Y-%m-%d %M:%S')))
+    os.system('git commit -m "updated site on {}"'.format(datetime.datetime.now().strftime('%Y-%m-%d %M:%S')))
+
+    os.system('git push')
 
 
-
-
-def _main():
+def convert():
     map(generate,
         map(render_template,
             map(parse_markdown, list_docs(settings.DOCS_PATH))))
 
+
 def main():
-    _main()
-    preview(settings.OUTPUT_PATH)
+    if not os.path.exists(os.path.join(settings.OUTPUT_PATH, '.git')):
+        os.system('git clone . -b master {}'.format(settings.OUTPUT_PATH))
+
+    convert()
+    preview()
 
 
 if __name__ == "__main__":
     main()
+    publish()
