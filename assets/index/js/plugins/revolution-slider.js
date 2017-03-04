@@ -15,7 +15,7 @@ var RevolutionSlider = function() {
             fullWidth: "on",
             fullScreen: "on",
             hideCaptionAtLimit: "",
-            dottedOverlay: "twoxtwo",
+            // dottedOverlay: "twoxtwo",
             navigationStyle: "preview4",
             fullScreenOffsetContainer: ""
           });
