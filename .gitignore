@@ -13,3 +13,4 @@ output
 *.DS_Store
 ._*
 .Trashes*.psd
+.#*
