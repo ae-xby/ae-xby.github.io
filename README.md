@@ -28,19 +28,19 @@
 
 - How to install
 
-    $> pip install -r requirements.txt
+        $> pip install -r requirements.txt
 
 - To start server run command:
 
-    $> python src/main.py server
+        $> python src/main.py server
 
 - To write a article run command:
 
-    $> python src/main.py new -t "this-is-an-article"
+        $> python src/main.py new -t "this-is-an-article"
 
 - To see more command line support, run:
 
-    $> python src/main.py --help
+        $> python src/main.py --help
 
 This command will create a file named `this-is-an-article.md` in
 `docs/articles` directory, and start a browser to live-edit this file.
@@ -58,8 +58,8 @@ This command will create a file named `this-is-an-article.md` in
 
 ## Custom themes or templates
 
-I use [jinja2](http://jinja.pocoo.org/docs/2.9/templates/) template engine which
-syntax s very simlary to django template.
+I use [jinja2](http://jinja.pocoo.org/docs/2.9/templates/) as template engine which
+syntax is very simlary to django default template engine.
 
 The templates directory structure:
 ```
