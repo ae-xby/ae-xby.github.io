@@ -19,6 +19,9 @@ STATIC_OUTPUT_PATH = os.path.join(OUTPUT_PATH, 'static/dist')
 STATIC_PREFIX = '/static/dist'
 STATIC_SOURCE_DIRS = PROJECT_PATH
 
+REMOTE_REPO = "git@github.com:ae-xby/ae-xby.github.io.git"
+REMOTE_BRANCH = "master"
+
 SERVER_PORT = 8888
 SERVER_HOST = "0.0.0.0"
 

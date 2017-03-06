@@ -72,12 +72,19 @@ def output_html(ctx):
     makedir(os.path.dirname(fn))
 
     # Don't publish draft article in production
-    if not ctx['DEBUG'] and cts.get('draft', False):
+    if not ctx['DEBUG'] and ctx.get('draft', False):
         return
 
     with open(fn, 'wb') as fb:
         fb.write(html.encode('utf8'))
         print("Generated {}".format(ctx['url']))
+
+def _publish_to_git():
+    os.chdir(os.path.join(settings.OUTPUT_PATH))
+    os.system('git add -u .')
+    os.system('git commit -m "updated site on {}"'.format(
+        datetime.datetime.now().strftime(settings.DATE_FORMAT)))
+    os.system('git push -u --set-upstream {} {}'.format(settings.REMOTE_REPO, settings.REMOTE_BRANCH))
 
 
 def publish():
@@ -87,11 +94,7 @@ def publish():
         settings.ASSETS_PATH,
         os.path.join(settings.OUTPUT_PATH, 'assets')
     ))
-    os.chdir(os.path.join(settings.OUTPUT_PATH))
-    os.system('git add -u .')
-    os.system('git commit -m "updated site on {}"'.format(
-        datetime.datetime.now().strftime(settings.DATE_FORMAT)))
-    os.system('git push')
+    _publish_to_git()
 
 
 def generate():
@@ -103,7 +106,7 @@ def generate():
 def _init_output():
     if not os.path.exists(os.path.join(settings.OUTPUT_PATH, '.git')):
         os.system('git clone {} -b master {}'.format(
-            settings.PROJECT_PATH, settings.OUTPUT_PATH))
+            settings.REMOTE_REPO, settings.OUTPUT_PATH))
 
 
 
