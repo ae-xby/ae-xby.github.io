@@ -150,7 +150,7 @@ var App = function() {
       $(window).load(function() {
         jQuery('.parallaxBg').parallax("50%", "50%");
       });
-    },
+    }
 
   };
 
