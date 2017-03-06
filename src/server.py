@@ -6,10 +6,11 @@ import tornado.websocket
 import tornado.autoreload
 from tornado.log import app_log
 
-from settings import root, OUTPUT_PATH
+import autoreload
+import settings
 
-ASSETS_PATH = os.path.join(OUTPUT_PATH, 'assets')
-STATIC_PATH = os.path.join(OUTPUT_PATH, 'static')
+ASSETS_PATH = os.path.join(settings.OUTPUT_PATH, 'assets')
+STATIC_PATH = os.path.join(settings.OUTPUT_PATH, 'static')
 
 clients = []
 
@@ -18,9 +19,9 @@ def reload_hook():
     generate()
     map(lambda c: c.write_message('refresh'), clients)
 
-
-tornado.autoreload.add_reload_hook(reload_hook)
-
+map(autoreload.watch_directory,
+    [settings.DOCS_PATH, settings.ASSETS_PATH, settings.SRC_PATH, settings.TEMPLATE_PATH])
+autoreload.add_reload_hook(reload_hook)
 
 class RefreshHandler(tornado.websocket.WebSocketHandler):
 
@@ -36,24 +37,25 @@ class RefreshHandler(tornado.websocket.WebSocketHandler):
         clients.remove(self)
 
 
-def make_app(settings):
+def make_app(config):
     urlpatterns = [
         (r"/refresh", RefreshHandler),
-        (r"/(.*)$", tornado.web.StaticFileHandler, {"path": OUTPUT_PATH}),
+        (r"/(.*)$", tornado.web.StaticFileHandler, {"path": settings.OUTPUT_PATH}),
     ]
 
-    return tornado.web.Application(urlpatterns, **settings)
+    return tornado.web.Application(urlpatterns, **config)
 
 
 def start_server(options):
 
     tornado.options.parse_command_line()
-    settings = dict(
-        default_host=options.host,
-        template_path=OUTPUT_PATH,
+    config = dict(
+        autoreload=False,
         debug=True
     )
-    app = make_app(settings)
-    app.listen(options.port)
+    app = make_app(config)
+    autoreload.start()
+    app.listen(options.port, address=options.host)
+
     app_log.info('Starting server on port {}'.format(options.port))
     tornado.ioloop.IOLoop.current().start()
