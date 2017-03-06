@@ -4,10 +4,12 @@ import os
 import webbrowser
 import datetime
 import argparse
+from collections import namedtuple
 
 import mistune
 from mistune_contrib import meta
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+from slugify import slugify
 
 import settings
 from utils import makedir
@@ -18,6 +20,7 @@ markdown = mistune.Markdown()
 jinja_env = Environment(
     loader=FileSystemLoader(settings.TEMPLATE_PATH)
 )
+
 
 def default_settings():
     return {k: getattr(settings, k) for k in dir(settings) if k.isupper()}
@@ -81,7 +84,7 @@ def publish():
     os.chdir(os.path.join(settings.OUTPUT_PATH))
     os.system('git add -u .')
     os.system('git commit -m "updated site on {}"'.format(
-        datetime.datetime.now().strftime('%Y-%m-%d %M:%S')))
+        datetime.datetime.now().strftime(settings.DATE_FORMAT)))
     os.system('git push')
 
 
@@ -93,8 +96,24 @@ def generate():
 
 def _init_output():
     if not os.path.exists(os.path.join(settings.OUTPUT_PATH, '.git')):
-        os.system('git clone . -b master {}'.format(settings.OUTPUT_PATH))
+        os.system('git clone {} -b master {}'.format(
+            settings.PROJECT_PATH, settings.OUTPUT_PATH))
 
+
+# for arg parse functions
+def _gen(args):
+    generate()
+
+def _pub(args):
+    publish()
+
+def _new(args):
+    fn = '{}.md'.format(
+        os.path.join(settings.DOCS_PATH, args.category, slugify(args.title)))
+    fields = ('title', 'authors', 'date', 'keywords', 'description', 'template')
+    Meta = namedtuple('Meta', fields)
+    meta = Meta._make([getattr(args, f) for f in fields])
+    new_page(fn, meta._asdict())
 
 def _init_cmd_parser():
     # command line parse
@@ -102,11 +121,39 @@ def _init_cmd_parser():
                         help="turn on debug mode", action="store_true")
     parser.add_argument("-v", "--verbose", help="increase output verbosity",
                         action="store_true")
-    parser.add_argument("-g", "--gen", help="generated html files",
-                        action="store_true")
-    parser.add_argument("-p", "--publish", help="publish the site",
-                        action="store_true")
+    subparser = parser.add_subparsers()
+
+    parser_gen = subparser.add_parser("gen")
+    parser_gen.set_defaults(func=_gen)
+
+    parser_pub = subparser.add_parser("pub")
+    parser_pub.set_defaults(func=_pub)
+
+    parser_new = subparser.add_parser("new")
+    parser_new.set_defaults(func=_new)
+    parser_new.add_argument("-t", "--title", help="page title", required=True)
+    parser_new.add_argument("-a", "--authors", help="authors", default='')
+    parser_new.add_argument("--description", help="description about this page[SEO]",
+                            default='')
+    parser_new.add_argument("--keywords", help="page keywords[SEO]", default='')
+    parser_new.add_argument("-c", "--category", help="belongs to which category",
+                            default='articles')
+    parser_new.add_argument("-T", "--template", help="tempate to use",
+                            default="article.html")
+    parser_new.add_argument("-d", "--date", help="authors",
+                            default=datetime.datetime.now().strftime(settings.DATE_FORMAT))
+
     return parser.parse_args()
+
+
+def new_page(fn, meta_info):
+    meta = '\n'.join('{}: {}'.format(k, v) for k, v in meta_info.items())
+
+    if not os.path.exists(fn):
+        with open(fn, 'wb') as fb:
+            fb.write(meta)
+            fb.write('\n\n')
+    os.system('open {}'.format(fn))
 
 
 def prepare():
@@ -117,13 +164,7 @@ def prepare():
 def main():
     prepare()
     args = _init_cmd_parser()
-    if args.gen:
-        generate()
-    elif args.publish:
-        publish()
-    else:
-        generate()
-        preview()
+    args.func(args)
 
 if __name__ == "__main__":
     main()
