@@ -119,23 +119,19 @@ def _new(args):
 
 def parse_command_line():
     # command line parse
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-D", "--debug",
-                        help="turn on debug mode", action="store_true")
-    parser.add_argument("-v", "--verbose", help="increase output verbosity",
-                        action="store_true")
+    parser = argparse.ArgumentParser('XYBLOG')
     subparser = parser.add_subparsers()
 
-    parser_gen = subparser.add_parser("gen")
+    parser_gen = subparser.add_parser("gen", help="generate html")
     parser_gen.set_defaults(func=lambda args: generate())
 
-    parser_pub = subparser.add_parser("pub")
+    parser_pub = subparser.add_parser("pub", help="publish to git repo")
     parser_pub.set_defaults(func=lambda args: publish())
 
-    parser_serve = subparser.add_parser("server")
+    parser_serve = subparser.add_parser("server", help="start http server")
     parser_serve.set_defaults(func=lambda args: start_server(args))
 
-    parser_new = subparser.add_parser("new")
+    parser_new = subparser.add_parser("new", help="new article")
     parser_new.set_defaults(func=_new)
     parser_new.add_argument("-t", "--title", help="page title", required=True)
     parser_new.add_argument("-a", "--authors", help="authors", default='')
