@@ -10,6 +10,7 @@ from mistune_contrib import meta
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 import settings
+from utils import makedir
 
 # command line parser
 parser = argparse.ArgumentParser()
@@ -30,20 +31,20 @@ def _patch_ctx(ctx):
 
 def list_docs(path, ext=".md"):
     """list all markdown files"""
-    return map(lambda x: os.path.join(path, x),
-               filter(lambda x: x.endswith(ext), os.listdir(path)))
+    return [os.path.join(dirpath, fn) for dirpath, _, fns in os.walk(settings.DOCS_PATH)
+            for fn in fns if fn.endswith(ext)]
 
 
 def parse_markdown(filename):
     """Parsing markdown files"""
-    basename = os.path.basename(filename)
-    bn, _ = os.path.splitext(basename)
+    relpath = os.path.relpath(filename, settings.DOCS_PATH)
+    bn, _ = os.path.splitext(relpath)
 
     with open(filename) as fb:
         ctx, content = meta.parse(fb.read())
         ctx['content'] = markdown(content)
         ctx['url'] = '/{bn}.html'.format(bn=bn)
-        ctx['output_filename'] = '{bn}.html'.format(bn=bn)
+        ctx['output_filename'] = '{bn}.html'.format(bn=os.path.join(settings.OUTPUT_PATH, bn))
         _patch_ctx(ctx)
         ctx.update(default_settings())
         return ctx
@@ -56,7 +57,8 @@ def render_template(ctx):
 
 def output_html(ctx):
     html = ctx['html']
-    fn = os.path.join(settings.OUTPUT_PATH, ctx['output_filename'])
+    fn = ctx['output_filename']
+    makedir(os.path.dirname(fn))
 
     with open(fn, 'wb') as fb:
         fb.write(html.encode('utf8'))
