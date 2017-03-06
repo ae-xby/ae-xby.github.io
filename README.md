@@ -9,6 +9,7 @@
 - [X] Live Preview
 - [X] Publish
 - [X] Autoreload
+- [ ] Publish to Github Pages
 - [ ] Assets bundle
 - [ ] SEO
   - [X] Meta Keywords, Description
@@ -77,3 +78,8 @@ templates
 
 To specify markdown file to use a different template, just change the markdown file
 meta `template` to the template file you want.
+
+## Publish to github Pages
+
+- change `src/settings.py` variable `REMOTE_REPO` to you github pages repository.
+- run publish command `python src/main.py pub` to publish.
