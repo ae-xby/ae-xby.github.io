@@ -14,10 +14,8 @@ from slugify import slugify
 
 import settings
 from server import start_server
-from utils import makedir, preview, as_url
+from utils import makedir, preview, as_url, get_ip
 
-# command line parser
-parser = argparse.ArgumentParser()
 markdown = mistune.Markdown()
 jinja_env = Environment(
     loader=FileSystemLoader(settings.TEMPLATE_PATH),
@@ -26,6 +24,7 @@ jinja_env = Environment(
 jinja_env.compressor_output_dir = settings.STATIC_OUTPUT_PATH
 jinja_env.compressor_static_prefix = settings.STATIC_PREFIX
 jinja_env.compressor_source_dirs = settings.STATIC_SOURCE_DIRS
+settings.SERVER_IP = get_ip()
 
 
 def default_settings():
@@ -120,6 +119,7 @@ def _new(args):
 
 def parse_command_line():
     # command line parse
+    parser = argparse.ArgumentParser()
     parser.add_argument("-D", "--debug",
                         help="turn on debug mode", action="store_true")
     parser.add_argument("-v", "--verbose", help="increase output verbosity",
