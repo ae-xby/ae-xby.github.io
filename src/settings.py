@@ -2,6 +2,8 @@
 
 import os.path
 
+DEBUG = True
+
 PROJECT_PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 root = lambda x: os.path.join(PROJECT_PATH, x)
 

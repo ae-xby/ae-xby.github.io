@@ -3,17 +3,20 @@
 import os
 import webbrowser
 import datetime
+import argparse
+
 import mistune
 from mistune_contrib import meta
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 import settings
 
+# command line parser
+parser = argparse.ArgumentParser()
 markdown = mistune.Markdown()
 jinja_env = Environment(
-    loader=FileSystemLoader(settings.TEMPLATE_PATH),
+    loader=FileSystemLoader(settings.TEMPLATE_PATH)
 )
-
 
 def default_settings():
     return {k: getattr(settings, k) for k in dir(settings) if k.isupper()}
@@ -51,7 +54,7 @@ def render_template(ctx):
     return ctx
 
 
-def generate(ctx):
+def output_html(ctx):
     html = ctx['html']
     fn = os.path.join(settings.OUTPUT_PATH, ctx['output_filename'])
 
@@ -68,32 +71,57 @@ def preview():
 
 
 def publish():
-    convert()
+    generate()
     os.system('rsync -avz {}/ {}'.format(
         settings.ASSETS_PATH,
         os.path.join(settings.OUTPUT_PATH, 'assets')
     ))
     os.chdir(os.path.join(settings.OUTPUT_PATH))
     os.system('git add -u .')
-    os.system('git commit -m "updated site on {}"'.format(datetime.datetime.now().strftime('%Y-%m-%d %M:%S')))
-
+    os.system('git commit -m "updated site on {}"'.format(
+        datetime.datetime.now().strftime('%Y-%m-%d %M:%S')))
     os.system('git push')
 
 
-def convert():
-    map(generate,
+def generate():
+    map(output_html,
         map(render_template,
             map(parse_markdown, list_docs(settings.DOCS_PATH))))
 
 
-def main():
+def _init_output():
     if not os.path.exists(os.path.join(settings.OUTPUT_PATH, '.git')):
         os.system('git clone . -b master {}'.format(settings.OUTPUT_PATH))
 
-    convert()
-    preview()
 
+def _init_cmd_parser():
+    # command line parse
+    parser.add_argument("-D", "--debug",
+                        help="turn on debug mode", action="store_true")
+    parser.add_argument("-v", "--verbose", help="increase output verbosity",
+                        action="store_true")
+    parser.add_argument("-g", "--gen", help="generated html files",
+                        action="store_true")
+    parser.add_argument("-p", "--publish", help="publish the site",
+                        action="store_true")
+    return parser.parse_args()
+
+
+def prepare():
+    print('Initializing ...')
+    _init_output()
+
+
+def main():
+    prepare()
+    args = _init_cmd_parser()
+    if args.gen:
+        generate()
+    elif args.publish:
+        publish()
+    else:
+        generate()
+        preview()
 
 if __name__ == "__main__":
     main()
-    publish()
