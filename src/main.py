@@ -97,10 +97,12 @@ def publish():
     _publish_to_git()
 
 
+def _generate(md):
+    return output_html(render_template(parse_markdown(md)))
+
+
 def generate():
-    map(output_html,
-        map(render_template,
-            map(parse_markdown, list_docs(settings.DOCS_PATH))))
+    map(_generate, list_docs(settings.DOCS_PATH))
 
 
 def _init_output():
@@ -117,6 +119,7 @@ def _new(args):
     Meta = namedtuple('Meta', fields)
     meta = Meta._make([getattr(args, f) for f in fields])
     new_page(fn, meta._asdict())
+    _generate(fn)
     preview(as_url(path + '.html'))
 
 
