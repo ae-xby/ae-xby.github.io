@@ -9,17 +9,23 @@ from collections import namedtuple
 import mistune
 from mistune_contrib import meta
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+from jac import CompressorExtension
 from slugify import slugify
 
 import settings
+from server import start_server
 from utils import makedir
 
 # command line parser
 parser = argparse.ArgumentParser()
 markdown = mistune.Markdown()
 jinja_env = Environment(
-    loader=FileSystemLoader(settings.TEMPLATE_PATH)
+    loader=FileSystemLoader(settings.TEMPLATE_PATH),
+    extensions=[CompressorExtension]
 )
+jinja_env.compressor_output_dir = settings.STATIC_OUTPUT_PATH
+jinja_env.compressor_static_prefix = settings.STATIC_PREFIX
+jinja_env.compressor_source_dirs = settings.STATIC_SOURCE_DIRS
 
 
 def default_settings():
@@ -83,6 +89,7 @@ def preview():
 
 
 def publish():
+    settings.DEBUG = False
     generate()
     os.system('rsync -avz {}/ {}'.format(
         settings.ASSETS_PATH,
@@ -107,12 +114,6 @@ def _init_output():
             settings.PROJECT_PATH, settings.OUTPUT_PATH))
 
 
-# for arg parse functions
-def _gen(args):
-    generate()
-
-def _pub(args):
-    publish()
 
 def _new(args):
     fn = '{}.md'.format(
@@ -122,7 +123,7 @@ def _new(args):
     meta = Meta._make([getattr(args, f) for f in fields])
     new_page(fn, meta._asdict())
 
-def _init_cmd_parser():
+def parse_command_line():
     # command line parse
     parser.add_argument("-D", "--debug",
                         help="turn on debug mode", action="store_true")
@@ -131,10 +132,17 @@ def _init_cmd_parser():
     subparser = parser.add_subparsers()
 
     parser_gen = subparser.add_parser("gen")
-    parser_gen.set_defaults(func=_gen)
+    parser_gen.set_defaults(func=lambda args: generate())
 
     parser_pub = subparser.add_parser("pub")
-    parser_pub.set_defaults(func=_pub)
+    parser_pub.set_defaults(func=lambda args: publish())
+
+    parser_serve = subparser.add_parser("server")
+    parser_serve.add_argument("-p", "--port", help="server port", type=int,
+                              default=settings.SERVER_PORT)
+    parser_serve.add_argument("--host", help="server host",
+                              default=settings.SERVER_HOST)
+    parser_serve.set_defaults(func=lambda args: start_server(args))
 
     parser_new = subparser.add_parser("new")
     parser_new.set_defaults(func=_new)
@@ -172,7 +180,7 @@ def prepare():
 
 def main():
     prepare()
-    args = _init_cmd_parser()
+    args = parse_command_line()
     args.func(args)
 
 if __name__ == "__main__":

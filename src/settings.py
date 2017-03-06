@@ -15,6 +15,12 @@ TEMPLATE_PATH = root('templates')
 ASSETS_PATH = root('assets')
 DOCS_PATH = root('docs')
 BASE_URL = 'https://www.xiaobaiyangyixun.com'
+STATIC_OUTPUT_PATH = os.path.join(OUTPUT_PATH, 'static/dist')
+STATIC_PREFIX = '/static/dist'
+STATIC_SOURCE_DIRS = PROJECT_PATH
+
+SERVER_PORT = 8888
+SERVER_HOST = "0.0.0.0"
 
 LANGUAGE = "cn"
 THEME_COLOR = 'blue'
