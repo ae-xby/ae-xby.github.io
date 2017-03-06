@@ -31,6 +31,9 @@ def _patch_ctx(ctx):
     for k, v in ctx.items():
         ctx[k] = v.decode('utf8')
 
+    # FIXME: boolean type may be support in the future
+    ctx['draft'] = True if ctx.get('draft', 'True') == 'True' else False
+
 
 def list_docs(path, ext=".md"):
     """list all markdown files"""
@@ -62,6 +65,10 @@ def output_html(ctx):
     html = ctx['html']
     fn = ctx['output_filename']
     makedir(os.path.dirname(fn))
+
+    # Don't publish draft article in production
+    if not ctx['DEBUG'] and cts.get('draft', False):
+        return
 
     with open(fn, 'wb') as fb:
         fb.write(html.encode('utf8'))
@@ -110,7 +117,7 @@ def _pub(args):
 def _new(args):
     fn = '{}.md'.format(
         os.path.join(settings.DOCS_PATH, args.category, slugify(args.title)))
-    fields = ('title', 'authors', 'date', 'keywords', 'description', 'template')
+    fields = ('title', 'authors', 'date', 'keywords', 'description', 'template', 'draft')
     Meta = namedtuple('Meta', fields)
     meta = Meta._make([getattr(args, f) for f in fields])
     new_page(fn, meta._asdict())
@@ -135,6 +142,8 @@ def _init_cmd_parser():
     parser_new.add_argument("-a", "--authors", help="authors", default='')
     parser_new.add_argument("--description", help="description about this page[SEO]",
                             default='')
+    parser_new.add_argument("--draft", help="draft", action='store_true',
+                            default=False)
     parser_new.add_argument("--keywords", help="page keywords[SEO]", default='')
     parser_new.add_argument("-c", "--category", help="belongs to which category",
                             default='articles')
