@@ -14,7 +14,7 @@ from slugify import slugify
 
 import settings
 from server import start_server
-from utils import makedir
+from utils import makedir, preview, as_url
 
 # command line parser
 parser = argparse.ArgumentParser()
@@ -81,13 +81,6 @@ def output_html(ctx):
         print("Generated {}".format(ctx['url']))
 
 
-def preview():
-    from urllib import pathname2url
-    uri = 'file:{}'.format(pathname2url(
-        os.path.join(settings.OUTPUT_PATH, 'index.html')))
-    webbrowser.open(uri)
-
-
 def publish():
     settings.DEBUG = False
     generate()
@@ -116,12 +109,14 @@ def _init_output():
 
 
 def _new(args):
-    fn = '{}.md'.format(
-        os.path.join(settings.DOCS_PATH, args.category, slugify(args.title)))
+    path = '/'.join([args.category, slugify(args.title)])
+    fn = '{}.md'.format(os.path.join(settings.DOCS_PATH, path))
     fields = ('title', 'authors', 'date', 'keywords', 'description', 'template', 'draft')
     Meta = namedtuple('Meta', fields)
     meta = Meta._make([getattr(args, f) for f in fields])
     new_page(fn, meta._asdict())
+    preview(as_url(path + '.html'))
+
 
 def parse_command_line():
     # command line parse
@@ -138,10 +133,6 @@ def parse_command_line():
     parser_pub.set_defaults(func=lambda args: publish())
 
     parser_serve = subparser.add_parser("server")
-    parser_serve.add_argument("-p", "--port", help="server port", type=int,
-                              default=settings.SERVER_PORT)
-    parser_serve.add_argument("--host", help="server host",
-                              default=settings.SERVER_HOST)
     parser_serve.set_defaults(func=lambda args: start_server(args))
 
     parser_new = subparser.add_parser("new")

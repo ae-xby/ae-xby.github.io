@@ -8,6 +8,7 @@ from tornado.log import app_log
 
 import autoreload
 import settings
+from utils import preview, as_url
 
 ASSETS_PATH = os.path.join(settings.OUTPUT_PATH, 'assets')
 STATIC_PATH = os.path.join(settings.OUTPUT_PATH, 'static')
@@ -55,7 +56,7 @@ def start_server(options):
     )
     app = make_app(config)
     autoreload.start()
-    app.listen(options.port, address=options.host)
-
-    app_log.info('Starting server on port {}'.format(options.port))
+    app.listen(settings.SERVER_PORT, address=settings.SERVER_HOST)
+    app_log.info('Starting server on port {}'.format(settings.SERVER_PORT))
+    preview(as_url('/index.html'))
     tornado.ioloop.IOLoop.current().start()
