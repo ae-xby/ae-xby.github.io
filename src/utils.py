@@ -29,3 +29,15 @@ def get_ip():
             for s in [socket.socket(socket.AF_INET , socket.SOCK_DGRAM)]][0][1]
     except:
         return '127.0.0.1'
+
+
+class cd:
+    def __init__(self, new):
+        self.new = os.path.expanduser(new)
+
+    def __enter__(self):
+        self.old = os.getcwd()
+        os.chdir(self.new)
+
+    def __exit__(self, etype, value, tb):
+        os.chdir(self.old)

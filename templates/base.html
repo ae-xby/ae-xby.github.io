@@ -27,9 +27,9 @@
 
     {% block css %}{% endblock %}
 
-    {% if STYLE_SWITCHER_ON %}
+    {% if DEBUG %}
     <!-- Style Switcher -->
-    <link rel="stylesheet" href="assets/css/plugins/style-switcher.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}/plugins/style-switcher/style-switcher.css">
     {% endif %}
 
 

@@ -17,6 +17,7 @@ DOCS_PATH = root('docs')
 BASE_URL = 'https://www.xiaobaiyangyixun.com'
 STATIC_OUTPUT_PATH = os.path.join(OUTPUT_PATH, 'static/dist')
 STATIC_PREFIX = '/static/dist'
+STATIC_URL = '/static'
 STATIC_SOURCE_DIRS = PROJECT_PATH
 
 REMOTE_REPO = "git@github.com:ae-xby/ae-xby.github.io.git"

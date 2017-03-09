@@ -37,7 +37,7 @@ def _patch_ctx(ctx):
         ctx[k] = v.decode('utf8')
 
     # FIXME: boolean type may be support in the future
-    ctx['draft'] = True if ctx.get('draft', 'True') == 'True' else False
+    ctx['draft'] = True if ctx.get('draft', 'False') == 'True' else False
 
 
 def list_docs(path, ext=".md"):
@@ -73,6 +73,7 @@ def output_html(ctx):
 
     # Don't publish draft article in production
     if not ctx['DEBUG'] and ctx.get('draft', False):
+        print('ignore draft article {}'.format(ctx['output_filename']))
         return
 
     with open(fn, 'wb') as fb:
@@ -89,11 +90,11 @@ def _publish_to_git():
 
 def publish():
     settings.DEBUG = False
+    if os.path.exists(settings.STATIC_OUTPUT_PATH):
+
+        print('clear output directory {}'.format(settings.STATIC_OUTPUT_PATH))
+        # shutil.rmtree(settings.STATIC_OUTPUT_PATH)
     generate()
-    os.system('rsync -avz {}/ {}'.format(
-        settings.ASSETS_PATH,
-        os.path.join(settings.OUTPUT_PATH, 'assets')
-    ))
     _publish_to_git()
 
 
@@ -108,7 +109,9 @@ def generate():
 def _init_output():
     if not os.path.exists(os.path.join(settings.OUTPUT_PATH, '.git')):
         os.system('git clone {} -b master {}'.format(
-            settings.REMOTE_REPO, settings.OUTPUT_PATH))
+            settings.PROJECT_PATH, settings.OUTPUT_PATH))
+        os.system('git remote remove origin')
+        os.system('git remote add origin {}'.format(settings.REMOTE_REPO))
 
 
 
