@@ -4,3 +4,5 @@ mistune==0.7.3
 -e git+git@github.com:yxy/mistune-contrib.git@2ef8126a9f443c4417f3248eaf3f3cde940e7e51#egg=mistune_contrib
 python-slugify==1.2.1
 tornado==4.4.2
+jac==0.16
+-e git+git@github.com:yxy/jinja-assets-compressor.git@f080ac984412bbe6ebb2f97988a0339203c4c177#egg=jac
