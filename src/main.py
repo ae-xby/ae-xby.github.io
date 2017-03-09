@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 
 import os
+import shutil
 import webbrowser
 import datetime
 import argparse
@@ -93,7 +94,7 @@ def publish():
     if os.path.exists(settings.STATIC_OUTPUT_PATH):
 
         print('clear output directory {}'.format(settings.STATIC_OUTPUT_PATH))
-        # shutil.rmtree(settings.STATIC_OUTPUT_PATH)
+        shutil.rmtree(settings.STATIC_OUTPUT_PATH)
     generate()
     _publish_to_git()
 
