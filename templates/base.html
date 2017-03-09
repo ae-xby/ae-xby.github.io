@@ -25,30 +25,13 @@
 
     <!-- Web Fonts -->
 
-    {% block css_compulsory %}
-    <!-- CSS Global Compulsory -->
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-    {% endblock %}
-
-    <!-- CSS Header and Footer -->
-    <link rel="stylesheet" href="assets/css/headers/header-v6.css">
-    <!-- <link rel="stylesheet" href="assets/css/footers/footer-v2.css"> -->
-    <link rel="stylesheet" href="assets/css/footers/footer-v7.css">
-
-    <!-- CSS Implementing Plugins -->
-    {% block css_plugins %}{% endblock %}
+    {% block css %}{% endblock %}
 
     {% if STYLE_SWITCHER_ON %}
     <!-- Style Switcher -->
     <link rel="stylesheet" href="assets/css/plugins/style-switcher.css">
     {% endif %}
 
-    <!-- CSS Theme -->
-    {% block css_theme %}
-    <link rel="stylesheet" href="assets/css/theme-colors/{{ THEME_COLOR }}.css" id="style_color">
-    {% endblock %}
-    <!-- CSS Customization -->
-    <link rel="stylesheet" href="assets/css/custom.css">
 
   </head>
   <body{% block body_attrs %}{% endblock %}>
