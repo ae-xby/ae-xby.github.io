@@ -43,9 +43,6 @@
 
 
     
-    <!-- Style Switcher -->
-    <link rel="stylesheet" href="/static/plugins/style-switcher/style-switcher.css">
-    
 
 
   </head>
@@ -973,17 +970,6 @@ id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-
   <script type="text/javascript" src="/static/dist/a3e0db2dd704d5b870229608933a12b3.js"></script>
   
 
-    
-    <script type="text/javascript">
-     var ws = new WebSocket("ws://" + "192.168.8.7" + ":" + "8888" + "/refresh");
-     ws.onopen = function () { ws.send("ready"); }
-     ws.onmessage = function (evt) {
-       console.log("received: " + evt.data);
-       if (evt.data == "refresh") {
-        location.reload();
-       }
-     };
-    </script>
     
 
   </body>
