@@ -32,18 +32,19 @@
 <link href="//cdn.bootcss.com/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-<link rel="stylesheet" href="/static/js/plugins/revolution-slider/rs-plugin/css/settings.css" type="text/css" media="screen">
-
+<link rel="stylesheet" href="/static/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css" type="text/css">
+<link rel="stylesheet" href="/static/plugins/revolution-slider/rs-plugin/css/settings.css" type="text/css" media="screen">
 <!--[if lt ie 9]>
-  <link rel="stylesheet" href="/static/js/plugins/revolution-slider/rs-plugin/css/settings-ie8.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="/static/plugins/revolution-slider/rs-plugin/css/settings-ie8.css" type="text/css" media="screen">
 <![endif]-->
 
-<link type="text/css" rel="stylesheet" href="/static/dist/f4b3a2c36925d37e3d42abf81e451e2d.css" />
-
-<link type="text/css" rel="stylesheet" href="/static/dist/d49ac345dfe022e7e0f9dfad1124f604.css" />
+<link type="text/css" rel="stylesheet" href="/static/dist/920bc17f6d721c0a0f57989d11cee725.css" />
 
 
 
+    
+    <!-- Style Switcher -->
+    <link rel="stylesheet" href="/static/plugins/style-switcher/style-switcher.css">
     
 
 
@@ -898,7 +899,7 @@ id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-
         </div>
 
         <div class="col-md-6">
-          <form action="assets/php/sky-forms-pro/demo-contacts-process.php" method="post" id="sky-form3" class="sky-form contact-style">
+          <form action="" method="post" id="sky-form3" class="sky-form contact-style">
             <fieldset>
               <label>Name</label>
               <div class="row">
@@ -963,16 +964,26 @@ id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-
     
 
   <!-- JS Implementing Plugins -->
-
-  <!-- <script src="//cdn.bootcss.com/jquery-easing/1.3/jquery.easing.min.js"></script> -->
   <script src="//cdn.bootcss.com/parallax/2.0.0/jquery.parallax.min.js"></script>
   <script src="//cdn.bootcss.com/waypoints/2.0.3/waypoints.min.js"></script>
   <script src="//cdn.bootcss.com/Counter-Up/1.0/jquery.counterup.min.js"></script>
   <script src="//cdn.bootcss.com/owl-carousel/1.32/owl.carousel.min.js"></script>
+  <!-- <script src="//cdn.bootcss.com/jquery-easing/1.3/jquery.easing.min.js"></script> -->
 
   <script type="text/javascript" src="/static/dist/a3e0db2dd704d5b870229608933a12b3.js"></script>
   
 
+    
+    <script type="text/javascript">
+     var ws = new WebSocket("ws://" + "192.168.8.7" + ":" + "8888" + "/refresh");
+     ws.onopen = function () { ws.send("ready"); }
+     ws.onmessage = function (evt) {
+       console.log("received: " + evt.data);
+       if (evt.data == "refresh") {
+        location.reload();
+       }
+     };
+    </script>
     
 
   </body>

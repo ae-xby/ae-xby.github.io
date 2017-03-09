@@ -1,0 +1,69 @@
+<!doctype html>
+<!--[if IE 8]> <html lang="cn" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="cn" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="cn"> <!--<![endif]-->
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="这是一段简短的描述" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!--  Meta for Smart App Banner -->
+    <!-- <meta name="apple-itunes-app" content="app-id=, app-argument=" -->
+    <!-- End -->
+
+    <!--  Meta for OpenGraph -->
+    <meta property="og:site_name" content="">
+    <meta property="og:title" content="资讯列表页">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.xiaobaiyangyixun.com/articles/index.html">
+    <meta property="og:description" content="这是一段简短的描述">
+    <!-- End -->
+
+    <title>资讯列表页</title>
+
+    <!-- Web Fonts -->
+
+    
+
+    
+    <!-- Style Switcher -->
+    <link rel="stylesheet" href="/static/plugins/style-switcher/style-switcher.css">
+    
+
+
+  </head>
+  <body>
+
+    
+    
+
+    <!-- JS Global Compulsory -->
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    
+    <!--[if lt IE 9]>
+      <script src="assets/plugins/respond.js"></script>
+      <script src="assets/plugins/html5shiv.js"></script>
+      <script src="assets/plugins/placeholder-IE-fixes.js"></script>
+    <![endif]-->
+    
+
+    
+    <script type="text/javascript">
+     var ws = new WebSocket("ws://" + "192.168.8.7" + ":" + "8888" + "/refresh");
+     ws.onopen = function () { ws.send("ready"); }
+     ws.onmessage = function (evt) {
+       console.log("received: " + evt.data);
+       if (evt.data == "refresh") {
+        location.reload();
+       }
+     };
+    </script>
+    
+
+  </body>
+</html>
