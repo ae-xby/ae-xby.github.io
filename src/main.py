@@ -26,6 +26,7 @@ jinja_env = Environment(
 jinja_env.compressor_output_dir = settings.STATIC_OUTPUT_PATH
 jinja_env.compressor_static_prefix = settings.STATIC_PREFIX
 jinja_env.compressor_source_dirs = settings.STATIC_SOURCE_DIRS
+jinja_env.filters['slugify'] = slugify
 settings.SERVER_IP = get_ip()
 
 
@@ -92,7 +93,7 @@ def output_html(ctx):
 
 def _publish_to_git():
     os.chdir(os.path.join(settings.OUTPUT_PATH))
-    os.system('git add -u .')
+    os.system('git add --all -v .')
     os.system('git commit -m "updated site on {}"'.format(
         datetime.datetime.now().strftime(settings.DATE_FORMAT)))
     os.system('git push -u --set-upstream {} {}'.format(settings.REMOTE_REPO, settings.REMOTE_BRANCH))
@@ -101,7 +102,6 @@ def _publish_to_git():
 def publish():
     settings.DEBUG = False
     if os.path.exists(settings.STATIC_OUTPUT_PATH):
-
         print('clear output directory {}'.format(settings.STATIC_OUTPUT_PATH))
         shutil.rmtree(settings.STATIC_OUTPUT_PATH)
     generate()
