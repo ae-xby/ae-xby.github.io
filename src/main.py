@@ -7,6 +7,7 @@ import datetime
 import argparse
 from collections import namedtuple
 
+import yaml
 import mistune
 from mistune_contrib import meta
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -47,6 +48,13 @@ def list_docs(path, ext=".md"):
             for fn in fns if fn.endswith(ext)]
 
 
+def _parse_extra(ctx):
+    if 'extra' in ctx:
+        with open(os.path.join(settings.DOCS_PATH, ctx['extra'])) as fb:
+            extra = yaml.load(fb)
+            ctx.update(extra)
+
+
 def parse_markdown(filename):
     """Parsing markdown files"""
     relpath = os.path.relpath(filename, settings.DOCS_PATH)
@@ -58,6 +66,7 @@ def parse_markdown(filename):
         ctx['url'] = '/{bn}.html'.format(bn=bn)
         ctx['output_filename'] = '{bn}.html'.format(bn=os.path.join(settings.OUTPUT_PATH, bn))
         _patch_ctx(ctx)
+        _parse_extra(ctx)
         ctx.update(default_settings())
         return ctx
 

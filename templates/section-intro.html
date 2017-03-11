@@ -1,0 +1,23 @@
+<section id="intro" class="intro-section">
+  <div class="fullscreenbanner-container">
+    <div class="fullscreenbanner">
+      <ul>
+        {% for slide in slides %}
+
+        <li data-title="{{ slide.title }}" {{ slide.attrs|xmlattr }}>
+          {% with image = slide.layers[0] %}
+            <img {{ image.attrs|xmlattr }} />
+          {% endwith %}
+
+          {% for layer in slide.layers if not layer.src %}
+            <div {{ layer.attrs|xmlattr }}>{{ layer.content }}</div>
+          {% endfor %}
+
+        </li>
+        {% endfor %}
+      </ul>
+      <div class="tp-bannertimer tp-bottom"></div>
+      <!-- <div class="tp-dottedoverlay twoxtwo"></div> -->
+    </div>
+  </div>
+</section>

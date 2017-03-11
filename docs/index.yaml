@@ -1,0 +1,127 @@
+page: index
+
+slides:
+  - title: 首页第一张图
+    attrs:
+      data-transition: fade
+      data-slotamount: 5
+      data-masterspeed: 700
+    layers:
+      - attrs:
+          src: /static/img/sliders/index/4a2d7c8d8038fb49395d0072d088161f_orig.jpg
+          alt:
+          data-bgfit: cover
+          data-bgposition: center center
+          data-bgrepeat: no-repeat
+      - attrs:
+          class: tp-caption re-title-v1 sft start
+          data-x: center
+          data-hoffset: 0
+          data-y: 150
+          data-speed: 300
+          data-start: 2000
+          data-easing: back.easeinout
+          data-endspeed: 300
+        content: 每人都是好厨子
+
+      - attrs:
+          class: tp-caption re-title-v2 sft
+          data-x: center
+          data-hoffset: 0
+          data-y: 250
+          data-speed: 500
+          data-start: 3000
+          data-easing: power4.easeinout
+          data-endspeed: 300
+          data-endeasing: power1.easein
+          data-captionhidden: off
+          style: "z-index: 6"
+        content: 唯有美食与爱不可辜负
+
+      - attrs:
+          class: tp-caption re-title-v1 sft
+          data-x: center
+          data-hoffset: 0
+          data-y: 400
+          data-speed: 800
+          data-start: 3500
+          data-easing: power4.easeinout
+          data-endspeed: 300
+          data-endeasing: power1.easein
+          data-captionhidden: off
+          style: "z-index: 6"
+        content: >-
+          <span class="page-scroll">
+          <a class="btn btn-u-orange color-light" href="">www</a>
+          </span>
+
+  - title: 首页第二张图
+    attrs:
+      data-transition: slideup
+      data-slotamount: 5
+      data-masterspeed: 1000
+    layers:
+      - attrs:
+          src: /static/img/sliders/index/A8zgbAHXPyHeUII7w7Ui0PCkYof.jpg
+          alt:
+          data-bgfit: cover
+          data-bgposition: center center
+          data-bgrepeat: no-repeat
+      - attrs:
+          class: tp-caption re-title-v1 sft
+          data-x: center
+          data-hoffset: 0
+          data-y: 100
+          data-speed: 800
+          data-start: 1500
+          data-easing: back.easeinout
+          data-endspeed: 300
+        content: 是谁来自山川湖海，却囿于昼夜，厨房与爱
+
+      - attrs:
+          class: tp-caption re-title-v2 sft
+          data-x: center
+          data-hoffset: 0
+          data-y: 250
+          data-speed: 500
+          data-start: 3000
+          data-easing: power4.easeinout
+          data-endspeed: 300
+          data-endeasing: power1.easein
+          data-captionhidden: off
+          style: "z-index: 6"
+        content: 唯有美食与爱不可辜负
+
+      - attrs:
+          class: tp-caption re-title-v1 sft
+          data-x: center
+          data-hoffset: 0
+          data-y: 400
+          data-speed: 800
+          data-start: 3500
+          data-easing: power4.easeinout
+          data-endspeed: 300
+          data-endeasing: power1.easein
+          data-captionhidden: off
+          style: "z-index: 6"
+        content: '<img alt="" src="/static/img/contents/qrcode.png"/>'
+teams:
+  - name: 石强
+    img: /static/img/team/img2-md.jpg
+    title: 艺训播音组组长
+    desc: 拥有长达七年的艺考培训经验。曾江苏人民广播电台播音员。现蜻蜓FM签约主播。《变形金刚》宣传片配音。宝马X1广告配音；央视纪录片《丝路之门》配音及大量地方电视台节目配音
+
+  - name: 刘井彬
+    img: /static/img/team/img2-md.jpg
+    title: 艺训编导组组长
+    desc: 多年的传媒行业从业经验再加多年传媒艺考培训经验，造就了刘老师教学上深入浅出的功力。用高中生易于理解的语言，讲解传媒艺术深广的含义。在理论教学之外，刘老师还擅长对摄影等技术类专业的教学，是一位教学全面的老师。
+
+  - name: 张寰宇
+    img: /static/img/team/img2-md.jpg
+    title: 播音讲师，现广州电台主播
+    desc: 前安徽电视台记者、主持人。拥有丰富的一线直播经验，和一线的教学经验，多年的一线主持工作经验是最殷实有力的教学基础。敏捷的思维能力、犀利的新闻观点具有亲和力的上课风格被得到了许多学生和家长的肯定。
+
+  - name: 周子林
+    img: /static/img/team/img2-md.jpg
+    title: 南方电视台编导、出镜记者
+    desc: 新闻媒体的大量实践带入到艺考教学的课堂中让同学们脱离空谈，针对各种实际问题来出谋划策。获得了同学们一致好评。

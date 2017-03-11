@@ -4,8 +4,7 @@ date:   2017-03-03 14:36
 description: 这是一段简短的描述
 keywords: k1, k2
 template: index.html
-
-
+extra: index.yaml
 
 
 一个 H1 大标题
