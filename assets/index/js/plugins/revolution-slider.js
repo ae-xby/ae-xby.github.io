@@ -8,7 +8,8 @@ var RevolutionSlider = function() {
       jQuery(document).ready(function() {
         revapi = jQuery('.fullscreenbanner').revolution(
           {
-            delay: 8000,
+            Delay: 8000,
+            onHoverStop:"off",
             startwidth: 1170,
             startheight: 500,
             hideThumbs: 10,
