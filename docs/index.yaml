@@ -282,3 +282,6 @@ colleges:
     image: /static/img/clients/national-geographic.png
   - title: 华南农业大学
     image: /static/img/clients/national-geographic.png
+
+others:
+  latest_articles: get_latest_articles
