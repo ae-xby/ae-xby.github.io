@@ -30,6 +30,14 @@ jinja_env.filters['slugify'] = slugify
 settings.SERVER_IP = get_ip()
 
 
+def get_latest_articles(n=3):
+    path = os.path.join(settings.DOCS_PATH, 'articles')
+    return sorted(
+        map(lambda x: parse_markdown(x), [
+            os.path.join(path, f) for f in os.listdir(path) if f != 'index.md' ]),
+        key=lambda x: datetime.datetime.strptime(x['date'], settings.DATE_FORMAT), reverse=True)[:n]
+
+
 def default_settings():
     return {k: getattr(settings, k) for k in dir(settings) if k.isupper()}
 
@@ -53,11 +61,14 @@ def _parse_extra(ctx):
     if 'extra' in ctx:
         with open(os.path.join(settings.DOCS_PATH, ctx['extra'])) as fb:
             extra = yaml.load(fb)
+            for k, func in extra.get('others', {}).items():
+                if func in registers:
+                    ctx[k] = registers[func]()
             ctx.update(extra)
 
 
 def parse_markdown(filename):
-    """Parsing markdown files"""
+    """Parsing markdown file"""
     relpath = os.path.relpath(filename, settings.DOCS_PATH)
     bn, _ = os.path.splitext(relpath)
 
@@ -188,6 +199,11 @@ def main():
     prepare()
     args = parse_command_line()
     args.func(args)
+
+
+registers = {
+    'get_latest_articles': get_latest_articles
+}
 
 if __name__ == "__main__":
     main()

@@ -7,7 +7,8 @@ DEBUG = True
 PROJECT_PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 root = lambda x: os.path.join(PROJECT_PATH, x)
 
-DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
+DATE_FORMAT = '%Y-%m-%d'
+DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 
 SRC_PATH = root('src')
 OUTPUT_PATH = root('output')
