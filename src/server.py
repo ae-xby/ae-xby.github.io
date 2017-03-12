@@ -17,8 +17,11 @@ clients = []
 
 def reload_hook():
     from main import generate
-    generate()
-    map(lambda c: c.write_message('refresh'), clients)
+    try:
+        generate()
+        map(lambda c: c.write_message('refresh'), clients)
+    except Exception as e:
+        print(e)
 
 map(autoreload.watch_directory,
     [settings.DOCS_PATH, settings.ASSETS_PATH, settings.SRC_PATH, settings.TEMPLATE_PATH])
