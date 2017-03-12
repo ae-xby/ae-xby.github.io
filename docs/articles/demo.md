@@ -1,11 +1,11 @@
 title: Demo page for markdown syntax
 authors: yxy
-date:   2017-03-03 14:36
+date:   2017-03-03
 description: Markdown 语法示例
 keywords: k1, k2
 template: article.html
+cover: img/contents/img1.jpg
 
-
 
 
 一个 H1 大标题
