@@ -25,7 +25,7 @@ var App = function () {
 	function handleMegaMenu() {
 		jQuery(document).on('click', '.mega-menu .dropdown-menu', function(e) {
 			e.stopPropagation();
-		})
+		});
 	}
 
 	// Search Box (Header)
@@ -126,7 +126,7 @@ var App = function () {
 				});
 				$(".equal-height-column", this).height(Math.max.apply(Math, heights)); //find and set max
 			});
-		}
+		};
 
 		EqualHeightColumns();
 		$(window).resize(function() {
@@ -154,7 +154,7 @@ var App = function () {
 					}
 				});
 			});
-		}
+		};
     $('.equal-height-columns-v2').ready(function() {
       EqualHeightColumns__Images();
     });
@@ -180,7 +180,7 @@ var App = function () {
 		  var WindowHeight = $(window).height();
 		  $(".fullheight").css("height", WindowHeight - HeaderHeight);
 		});
-	}
+	};
 
 	// Align Middle
 	var handleValignMiddle = function() {
@@ -192,7 +192,7 @@ var App = function () {
 			$(this).css("padding-top", $(this).parent().height() / 2 - $(this).height() / 2);
 		  });
 		});
-	}
+	};
 
 	// Hover Selector
 	function handleHoverSelector() {
@@ -316,6 +316,6 @@ var App = function () {
 		  if (jQuery(window).width() > 768) {
 			MenuMode();
 		  }
-		},
+		}
 	};
 }();

@@ -44,7 +44,7 @@ var App = function() {
       var WindowHeight = $(window).height();
       $(".fullheight").css("height", WindowHeight - HeaderHeight);
     });
-  }
+  };
 
   // handleLangs
   function handleLangs() {
@@ -62,7 +62,7 @@ var App = function() {
         $(this).css("padding-top", $(this).parent().height() / 2 - $(this).height() / 2);
       });
     });
-  }
+  };
 
   /*function handleHeader() {
     //jQuery to collapse the navbar on scroll
