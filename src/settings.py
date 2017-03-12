@@ -34,3 +34,5 @@ STYLE_SWITCHER_ON = True
 ADDRESS = u'广州市海珠区昌岗江南坊5楼'
 TEL = "020 1234 123"
 EMAIL = "info@xby.com"
+WEIXIN_GZH_QR = "/static/img/contents/qrcode.png"
+WEIXIN_GZH = "gz-xby"
