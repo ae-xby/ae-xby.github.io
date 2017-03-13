@@ -1,0 +1,51 @@
+<section id="news" class="news-section">
+  <div class="container content-lg">
+    <div class="title-v1">
+      <h2>最新资讯</h2>
+      <p>艺考最权威最全面的消息</p>
+    </div>
+
+    <div class="row news-v1">
+      {% for article in latest_articles %}
+      <div class="col-md-4{% if loop.last %}{% else %} md-margin-bottom-40{% endif %}">
+        <div class="news-v1-in">
+          <img class="img-responsive" src="{{ STATIC_URL}}/{{ article.cover }}" alt="">
+          <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+          <p>{{ article.description|truncate(150) }}</p>
+          <ul class="list-inline news-v1-info">
+            <li><span>作者</span> <a href="#"> {{ article.authors }}</a></li>
+            <li>|</li>
+            <li><i class="fa fa-clock-o"></i> {{ article.date }}</li>
+            <!-- <li class="pull-right">
+                 <a href="#"><i class="fa fa-comments-o"></i> 14</a>
+                 </li> -->
+          </ul>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="parallax-twitter parallaxBg">
+    <div class="container parallax-twitter-in">
+      <!-- <div class="margin-bottom-30">
+           <i class="icon-custom rounded-x icon-bg-blue fa fa-twitter"></i>
+           </div> -->
+
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <ul class="list-unstyled owl-twitter-v1">
+            <li class="item">
+              <p> 晓白杨为我们提供了优秀的生源。 </p>
+              <span>xxx传媒大学</span>
+            </li>
+            <li class="item">
+              <p>感谢晓白杨艺训，一个学期的学习，让我的孩子备战充分，也让他考上了理想的大学。</p>
+              <span>张姓家长</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

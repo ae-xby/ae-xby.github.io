@@ -1,0 +1,189 @@
+<section id="about" class="about-section section-first">
+  <div class="block-v1">
+    <div class="container">
+      <div class="row content-boxes-v3">
+      {% for o in advantages %}
+        <div class="col-md-4 md-margin-bottom-30">
+          <i class="icon-custom rounded-x icon-bg-dark fa {{ o.icon }}"></i>
+          <div class="content-boxes-in-v3">
+            <h2 class="heading-sm">{{ o.title }}</h2>
+            <p>{{ o.content }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="about-image bg-grey">
+    <div class="container">
+      <div class="title-v1">
+        <h1>教学理念</h1>
+        <p>
+          以孩子的未来为己任，晓白杨专业教学严谨又尊重个性，管理人性但绝不放任自流。
+          <br />
+          晓白杨艺训的教师团队拥有顶尖的优秀主播及传媒工作者，引领学员找到属于自己的传媒之路。
+        </p>
+      </div>
+      <!-- <div class="img-center">
+           <img class="img-responsive" src="{{ STATIC_URL }}/img/mockup/mockup.png" alt="">
+           </div> -->
+    </div>
+  </div>
+
+  <div class="container content-lg">
+
+    <div class="title-v1">
+      <h2>教学特色</h2>
+      <p> </p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 content-boxes-v3 margin-bottom-40">
+        {% for f in features[:3] %}
+        <div class="clearfix margin-bottom-30">
+          <i class="icon-custom icon-md rounded-x icon-bg-u icon-line icon-{{ f.icon }}"></i>
+          <div class="content-boxes-in-v3">
+            <h2 class="heading-sm">{{ f.title }}</h2>
+            <p>{{ f.content }}</p>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+      <div class="col-md-6">
+        <img class="img-responsive"
+             src="{{ STATIC_URL }}/img/mockup/img2.jpg" alt="">
+      </div>
+    </div>
+
+    <div class="row margin-bottom-40">
+      <div class="col-md-4">
+        <div class="content-boxes-v5 margin-bottom-30">
+          <i class="rounded-x icon-layers"></i>
+          <div class="overflow-h">
+            <h3 class="no-top-space">Responsive Layout</h3>
+            <p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
+          </div>
+        </div>
+        <div class="content-boxes-v5 md-margin-bottom-30">
+          <i class="rounded-x icon-settings"></i>
+          <div class="overflow-h">
+            <h3 class="no-top-space">Color Options</h3>
+            <p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="content-boxes-v5 margin-bottom-30">
+          <i class="rounded-x icon-earphones-alt "></i>
+          <div class="overflow-h">
+            <h3 class="no-top-space">Outstanding Support</h3>
+            <p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
+          </div>
+        </div>
+        <div class="content-boxes-v5 md-margin-bottom-30">
+          <i class="rounded-x icon-user "></i>
+          <div class="overflow-h">
+            <h3 class="no-top-space">User Friendly</h3>
+            <p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="content-boxes-v5 margin-bottom-30">
+          <i class="rounded-x icon-wrench"></i>
+          <div class="overflow-h">
+            <h3 class="no-top-space">Customizable Design</h3>
+            <p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
+          </div>
+        </div>
+        <div class="content-boxes-v5 md-margin-bottom-30">
+          <i class="rounded-x icon-star"></i>
+          <div class="overflow-h">
+            <h3 class="no-top-space">Free Updates</h3>
+            <p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
+          </div>
+        </div>
+      </div>
+    </div><!--/end row-->
+
+    <!-- Services Blocks -->
+  </div>
+
+  <div class="parallax-quote parallaxBg">
+    <div class="container">
+      <div class="parallax-quote-in">
+        <p>
+          传媒之路道阻且长，但我们晓白杨的学员从不畏惧，
+          <br />
+          因为有一句话深深的烙印在每一个人的心里：
+          <br />
+          <span class="color-blue">不误现在，不畏将来！ </span>
+        </p>
+        <small>晓白杨艺训</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="team-v1 bg-grey content-lg">
+    <div class="container">
+      <div class="title-v1">
+        <h2>我们的团队</h2>
+        <p>
+          team intro
+        </p>
+      </div>
+
+      <ul class="list-unstyled row">
+      {% for member in teams %}
+        <li class="col-sm-3 col-xs-6 md-margin-bottom-30">
+
+          <div class="team-img">
+            <img class="img-responsive" src="{{ member.img }}" alt="">
+            <ul>
+              <li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-google-plus"></i></a></li>
+            </ul>
+          </div>
+          <h3>{{ member.name }}</h3>
+          <h4>/ {{ member.title }}</h4>
+          <p>{{ member.desc }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="parallax-counter parallaxBg">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-xs-6">
+          <div class="counters">
+            <span class="counter">10629</span>
+            <h4>学员数</h4>
+          </div>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+          <div class="counters">
+            <span class="counter">277</span>
+            <h4>一本录取率</h4>
+          </div>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+          <div class="counters">
+            <span class="counter">78</span>
+            <h4>Team Members</h4>
+          </div>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+          <div class="counters">
+            <span class="counter">109</span>
+            <h4>Awards</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

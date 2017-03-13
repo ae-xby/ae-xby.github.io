@@ -1,0 +1,98 @@
+<section id="courses">
+  <div class="container content-lg">
+    <div class="title-v1">
+      <h2>课程介绍</h2>
+      <p>{{ course_intro }}</p>
+    </div>
+
+    <div class="row service-box-v1">
+
+      {% for course in courses %}
+      <div class="col-md-3 col-sm-6">
+        <div class="service-block service-block-default">
+          <i class="icon-custom icon-lg icon-bg-u rounded-x fa fa-{{ course.icon }}"></i>
+          <h2 class="heading-md">{{ course.title }}</h2>
+          <p>{{ course.career }}</p>
+          <ul class="list-unstyled">
+            {% for i in course.content.split('、') %}
+            <li>{{ i }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+
+  <div class="title-v1">
+    <h2>课堂风采</h2>
+    <p>寓教于乐的气氛</p>
+  </div>
+
+  <ul class="list-unstyled row portfolio-box-v1">
+    <li class="col-sm-4">
+      <img class="img-responsive" src="{{ STATIC_URL }}/img/mockup/img1.jpg" alt="">
+      <div class="portfolio-box-v1-in">
+        <h3>Collective Package</h3>
+        <p>Web Design, Mock-up</p>
+        <a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>
+      </div>
+    </li>
+    <li class="col-sm-4">
+      <img class="img-responsive" src="{{ STATIC_URL }}/img/mockup/img2.jpg" alt="">
+      <div class="portfolio-box-v1-in">
+        <h3>Ahola Company</h3>
+        <p>Brand Design, UI</p>
+        <a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>
+      </div>
+    </li>
+    <li class="col-sm-4">
+      <img class="img-responsive" src="{{ STATIC_URL }}/img/mockup/img4.jpg" alt="">
+      <div class="portfolio-box-v1-in">
+        <h3>Allan Project</h3>
+        <p>Web Development, HTML5</p>
+        <a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>
+      </div>
+    </li>
+    <li class="col-sm-4">
+      <img class="img-responsive" src="{{ STATIC_URL }}/img/mockup/img4.jpg" alt="">
+      <div class="portfolio-box-v1-in">
+        <h3>Allan Project</h3>
+        <p>Web Development, HTML5</p>
+        <a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>
+      </div>
+    </li>
+
+    <li class="col-sm-4">
+      <img class="img-responsive" src="{{ STATIC_URL }}/img/mockup/img1.jpg" alt="">
+      <div class="portfolio-box-v1-in">
+        <h3>Collective Package</h3>
+        <p>Web Design, Mock-up</p>
+        <a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>
+      </div>
+    </li>
+    <li class="col-sm-4">
+      <img class="img-responsive" src="{{ STATIC_URL }}/img/mockup/img2.jpg" alt="">
+      <div class="portfolio-box-v1-in">
+        <h3>Ahola Company</h3>
+        <p>Brand Design, UI</p>
+        <a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>
+      </div>
+    </li>
+  </ul>
+
+  <div class="call-action-v1">
+    <div class="container margin-bottom-50">
+      <div class="call-action-v1-box">
+        <div class="call-action-v1-in">
+          <p>一对一小班精品教学，专注华南地区高端定制型传媒艺考培训机构。</p>
+        </div>
+        <div class="call-action-v1-in inner-btn page-scroll">
+          <a href="#portfolio" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-block">联系我们</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
