@@ -2643,7 +2643,7 @@
   overflow: hidden;
   text-align: center;
   position: relative;
-  background: url(../img/bg/19.jpg) 50% 0 fixed;
+  background: url(../img/bg/19-1.jpg) 50% 0 fixed;
 }
 
 .parallax-counter-v4:after {
@@ -3503,7 +3503,7 @@
 }
 
 .interactive-slider-v1.img-v2 {
-  background: url(../img/bg/19.jpg) no-repeat;
+  background: url(../img/bg/19-1.jpg) no-repeat;
   background-size: cover;
   background-position: center center;
 }
@@ -5178,7 +5178,7 @@
   padding: 100px 0;
   position: relative;
   text-align: center;
-  background: #333 url(../img/bg/19.jpg) 50% 0 fixed;
+  background: #333 url(../img/bg/19-1.jpg) 50% 0 fixed;
   background-size: cover;
   background-position: center center;
 }
