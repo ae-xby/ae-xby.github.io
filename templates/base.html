@@ -73,5 +73,11 @@
     </script>
     {% endif %}
 
+    {% if not DEBUG %}
+    {% if CNZZ %}
+    <script src="http://s11.cnzz.com/z_stat.php?id={{ CNZZ }}&web_id={{ CNZZ }}" language="JavaScript"></script>
+    {% endif %}
+    {% endif %}
+
   </body>
 </html>
