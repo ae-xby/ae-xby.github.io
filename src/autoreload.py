@@ -9,6 +9,7 @@ from tornado import process
 from tornado.util import exec_in
 
 
+_watched_dires = set()
 _watched_files = set()
 _reload_hooks = []
 _reload_attempted = False
@@ -53,7 +54,7 @@ def watch(filename):
 
 
 def watch_directory(dirpath):
-    map(watch, [os.path.join(root, fn) for root, _, fns in os.walk(dirpath) for fn in fns])
+    _watched_dires.add(dirpath)
 
 
 def add_reload_hook(fn):
@@ -67,9 +68,16 @@ def add_reload_hook(fn):
     _reload_hooks.append(fn)
 
 
+def _update_watched_files():
+    for dn in _watched_dires:
+        for root, dirs, filenames in os.walk(dn):
+            for fn in filenames:
+                _watched_files.add(os.path.join(root, fn))
+
 def _reload_on_update(modify_times):
     if _reload_attempted:
         return
+    _update_watched_files()
     for path in _watched_files:
         _check_file(modify_times, path)
 

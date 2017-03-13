@@ -32,10 +32,12 @@ settings.SERVER_IP = get_ip()
 
 def get_latest_articles(n=3):
     path = os.path.join(settings.DOCS_PATH, 'articles')
-    return sorted(
-        map(lambda x: parse_markdown(x), [
-            os.path.join(path, f) for f in os.listdir(path) if f != 'index.md' ]),
-        key=lambda x: datetime.datetime.strptime(x['date'], settings.DATE_FORMAT), reverse=True)[:n]
+    xv = map(lambda x: parse_markdown(x),
+                filter(lambda x: not x.endswith('index.md'),
+                    list_docs(os.path.join(settings.DOCS_PATH, 'articles'))))
+    return sorted(xv,
+                  key=lambda x: datetime.datetime.strptime(x['date'], settings.DATE_FORMAT),
+                  reverse=True)[:n]
 
 
 def default_settings():
@@ -143,7 +145,7 @@ def _new(args):
     Meta = namedtuple('Meta', fields)
     meta = Meta._make([getattr(args, f) for f in fields])
     new_page(fn, meta._asdict())
-    _generate(fn)
+    generate()
     preview(as_url(path + '.html'))
 
 
@@ -164,16 +166,17 @@ def parse_command_line():
     parser_new = subparser.add_parser("new", help="new article")
     parser_new.set_defaults(func=_new)
     parser_new.add_argument("-t", "--title", help="page title", required=True)
-    parser_new.add_argument("-a", "--authors", help="authors", default='')
+    parser_new.add_argument("-a", "--authors", help="authors", default=settings.DEFAULT_AUTHOR)
     parser_new.add_argument("--description", help="description about this page[SEO]",
-                            default='')
+                            default='...')
     parser_new.add_argument("--draft", help="draft", action='store_true',
                             default=False)
-    parser_new.add_argument("--keywords", help="page keywords[SEO]", default='')
+    parser_new.add_argument("--keywords", help="page keywords[SEO]",
+                            default=settings.DEFAULT_KEYWORDS)
     parser_new.add_argument("-c", "--category", help="belongs to which category",
-                            default='articles')
-    parser_new.add_argument("-T", "--template", help="tempate to use",
-                            default="article.html")
+                            default=settings.DEFAULT_CATEGORY)
+    parser_new.add_argument("-T", "--template", help="template to use",
+                            default=settings.DEFAULT_TEMPLATE)
     parser_new.add_argument("-d", "--date", help="authors",
                             default=datetime.datetime.now().strftime(settings.DATE_FORMAT))
 
@@ -186,7 +189,7 @@ def new_page(fn, meta_info):
     if not os.path.exists(fn):
         with open(fn, 'wb') as fb:
             fb.write(meta)
-            fb.write('\n\n')
+            fb.write('\n\n从这里开始编辑...')
     os.system('open {}'.format(fn))
 
 

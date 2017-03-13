@@ -23,8 +23,12 @@ def reload_hook():
     except Exception as e:
         print(e)
 
-map(autoreload.watch_directory,
-    [settings.DOCS_PATH, settings.ASSETS_PATH, settings.SRC_PATH, settings.TEMPLATE_PATH])
+
+map(autoreload.watch_directory, [
+    settings.DOCS_PATH,
+    settings.ASSETS_PATH,
+    settings.SRC_PATH,
+    settings.TEMPLATE_PATH])
 autoreload.add_reload_hook(reload_hook)
 
 class RefreshHandler(tornado.websocket.WebSocketHandler):
@@ -61,5 +65,4 @@ def start_server(options):
     autoreload.start()
     app.listen(settings.SERVER_PORT, address=settings.SERVER_HOST)
     app_log.info('Starting server on port {}'.format(settings.SERVER_PORT))
-    preview(as_url('/index.html'))
     tornado.ioloop.IOLoop.current().start()
