@@ -1,5 +1,4 @@
-page: index
-
+# 教学优势
 advantages:
   - title: 高层次传媒院校专业保过
     content: 晓白杨与全国众多传媒院校达成深度战略合作。专业通过率一直遥遥领先于同类传媒机构。极高的名校通过率更是晓白杨在业内树立的强大口碑。可以说选择晓白杨就是选择优质传媒院校。
@@ -13,6 +12,43 @@ advantages:
     content: 晓白杨在深度调研的基础上决定与大学的小课制度保持一致，采用小班教学。播音班12人。编导班15人。真正做到优质教学。
     icon: fa-bolt
 
+# 高考优势
+benefits:
+  - title: 低分录取
+    icon: trophy
+    content: 传媒专业录取分数线与音乐类专业相同。相比普通高考录取分降低100-200分给本科线以下的同学提供了一个上本科的机会
+
+  - title: 简单易学
+    icon: directions
+    content: >-
+      传媒专业属于艺术学科与人文学科结合的亚艺术门类。相比音乐、美术、舞蹈等纯艺术专业更加简单易学，
+      时间与金钱的花费也相对较少。
+
+  - title: 趣味性强
+    icon: bubbles
+    content: 传媒学习不同于文化课学习。传媒课堂主要以影视剧来辅助教学。趣味性大大增强。但趣味性强也要用功学哦。
+
+  - title: 开设传媒专业的高校多
+    icon: badge
+    content: >-
+      除北电、中戏等专门的传媒院校外，越来越多的综合类大学也增加了传媒专业。广东省内有暨大、
+      华农、广大等知名高校都开设了传媒专业。
+
+  - title: 就业前景广
+    icon: rocket
+    content: >-
+      网络时代每个人都成为自媒体，传媒与网络的合流会激活一个巨量的传媒行业，诞生巨量的就业岗位。
+      薪水也会随着工作经验的积累水涨船高。
+
+  - title: 全面提升素质
+    icon: globe
+    content: >-
+      传媒学习大大提升学生的综合素质。高中校园只重视学生的文化成绩。而传媒会提升语言表达、
+      逻辑思维言谈举止等素质，会让孩子受益终身。
+
+
+# 首页轮播图片配置区
+# 要更改图片，只需替换 src 下图片的位置即可
 slides:
   - title: 首页第一张图
     attrs:
@@ -31,9 +67,9 @@ slides:
           data-x: center
           data-hoffset: 0
           data-y: 150
-          data-speed: 300
+          data-speed: 700
           data-start: 2000
-          data-easing: back.easeinout
+          data-easing: easeOutBack
           data-endspeed: 300
         content: 晓白杨
 
@@ -118,6 +154,9 @@ slides:
           data-captionhidden: off
           style: "z-index: 6"
         content: '<img alt="" src="/static/img/contents/qrcode.png"/>'
+
+
+# 团队介绍
 teams:
   - name: 石强
     img: /static/img/team/img2-md.jpg
@@ -139,6 +178,7 @@ teams:
     title: 南方电视台编导、出镜记者
     desc: 新闻媒体的大量实践带入到艺考教学的课堂中让同学们脱离空谈，针对各种实际问题来出谋划策。获得了同学们一致好评。
 
+# 教学特色
 features:
   - title: 高层次传媒院校专业保过
     icon: trophy
@@ -201,10 +241,14 @@ features:
     content: >-
       晓白杨为每一位学员量身定制自己的服装，并提供专业的形象建议。让学员由内而外的提升整体的专业素养。打造全面的艺考竞争力
 
+
+# 课程信息
 course_intro: >-
   晓白杨艺训是华南地区首屈一指的高端定制型传媒艺考培训机构。 <br>
   与广东电视台，珠江电影制片厂以及众多艺术工作室的深度合作，为学员打造各具特色的教学计划，<br>
   形成晓白杨独特的教学体系，也使得晓白杨成为传媒艺考培训行业的翘楚。
+
+# 开设的课程内容
 courses:
   - title: 编导类
     icon: lightbulb-o
@@ -260,7 +304,10 @@ courses:
       影师，以时尚、个性且富有内涵的形象气质与他们托起相机时的专注和潇洒，得到
       了越来越多人的尊敬和崇拜。
 
+# 开设的课程分类
 categories: 编导类 播音主持类 影视表演类 摄影类
+
+# 学生风采
 students:
   - name: 王茗
     college: 北京师范大学珠海分校
@@ -290,11 +337,15 @@ students:
     avatar: /static/img/students/huang-qi-lin.jpg
     comment: 爱上编导，爱上晓白杨.
 
+# 合作学院
 colleges:
   - title: 暨南大学
     image: /static/img/clients/national-geographic.png
   - title: 华南农业大学
     image: /static/img/clients/national-geographic.png
 
+# internal usage, don't try to modifiy these
 others:
   latest_articles: get_latest_articles
+page: index
+

@@ -1,0 +1,30 @@
+<div class="container content-sm">
+
+  <div class="title-v1">
+    <h2>传媒艺考优势</h2>
+  </div>
+
+  <div class="row">
+    {% for objs in benefits|batch(3) %}
+    <div class="col-sm-6
+                content-boxes-v3
+                {% if loop.last %}{% else %} content-boxes-v3-right sm-margin-bottom-30{%endif %}">
+      {% if loop.index is divisibleby 2 %}
+        {% set icons=['icon-bg-u', 'icon-bg-darker'] %}
+      {% else %}
+        {% set icons=['icon-bg-darker', 'icon-bg-u'] %}
+      {% endif %}
+
+      {% for obj in objs %}
+      <div class="clearfix{% if loop.last %}{% else %} margin-bottom-30 {% endif %}">
+        <i class="icon-custom icon-md rounded-x {{ loop.cycle(icons[0], icons[1]) }} icon-line icon-{{ obj.icon }}"></i>
+        <div class="content-boxes-in-v3">
+          <h2 class="heading-sm">{{ obj.title }}</h2>
+          <p>{{ obj.content }}</p>
+        </div>
+      </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
