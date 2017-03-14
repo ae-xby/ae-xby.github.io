@@ -3,7 +3,7 @@
   <div class="about-image bg-grey">
     <div class="container">
       <div class="title-v1">
-        <h1>教学理念</h1>
+        <h1>严格教学</h1>
         <p>
           以孩子的未来为己任，晓白杨专业教学严谨又尊重个性，管理人性但绝不放任自流。
           <br />
@@ -23,21 +23,9 @@
       <p> </p>
     </div>
 
-    <div class="row content-boxes-v3 margin-bottom-40">
-      {% for o in advantages %}
-      <div class="col-md-4 md-margin-bottom-30">
-        <i class="icon-custom rounded-x icon-bg-dark fa {{ o.icon }}"></i>
-        <div class="content-boxes-in-v3">
-          <h2 class="heading-sm">{{ o.title }}</h2>
-          <p>{{ o.content }}</p>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-
     <div class="row">
       <div class="col-md-6 content-boxes-v3 margin-bottom-40">
-        {% for f in features[:3] %}
+        {% for f in features[:4] %}
         <div class="clearfix margin-bottom-30">
           <i class="icon-custom icon-md rounded-x icon-bg-u icon-line icon-{{ f.icon }}"></i>
           <div class="content-boxes-in-v3">
@@ -46,7 +34,6 @@
           </div>
         </div>
         {% endfor %}
-
       </div>
       <div class="col-md-6">
         <img class="img-responsive"
@@ -54,76 +41,18 @@
       </div>
     </div>
 
-    <div class="row margin-bottom-40">
-      <div class="col-md-4">
-        <div class="content-boxes-v5 margin-bottom-30">
-          <i class="rounded-x icon-layers"></i>
-          <div class="overflow-h">
-            <h3 class="no-top-space">Responsive Layout</h3>
-            <p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
-          </div>
-        </div>
-        <div class="content-boxes-v5 md-margin-bottom-30">
-          <i class="rounded-x icon-settings"></i>
-          <div class="overflow-h">
-            <h3 class="no-top-space">Color Options</h3>
-            <p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="content-boxes-v5 margin-bottom-30">
-          <i class="rounded-x icon-earphones-alt "></i>
-          <div class="overflow-h">
-            <h3 class="no-top-space">Outstanding Support</h3>
-            <p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
-          </div>
-        </div>
-        <div class="content-boxes-v5 md-margin-bottom-30">
-          <i class="rounded-x icon-user "></i>
-          <div class="overflow-h">
-            <h3 class="no-top-space">User Friendly</h3>
-            <p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="content-boxes-v5 margin-bottom-30">
-          <i class="rounded-x icon-wrench"></i>
-          <div class="overflow-h">
-            <h3 class="no-top-space">Customizable Design</h3>
-            <p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
-          </div>
-        </div>
-        <div class="content-boxes-v5 md-margin-bottom-30">
-          <i class="rounded-x icon-star"></i>
-          <div class="overflow-h">
-            <h3 class="no-top-space">Free Updates</h3>
-            <p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
-          </div>
-        </div>
-      </div>
-    </div><!--/end row-->
-
     <!-- Services Blocks -->
   </div>
 
   <div class="parallax-quote parallaxBg">
     <div class="container">
       <div class="parallax-quote-in">
-        <p>
-          传媒之路道阻且长，但我们晓白杨的学员从不畏惧，
-          <br />
-          因为有一句话深深的烙印在每一个人的心里：
-          <br />
-          <span class="color-blue">不误现在，不畏将来！ </span>
-        </p>
-        <small>晓白杨艺训</small>
+        {{ quotes }}
       </div>
     </div>
   </div>
 
-  <div class="team-v1 bg-grey content-lg">
+  <div id="teams" class="team-v1 bg-grey content-lg">
     <div class="container">
       <div class="title-v1">
         <h2>我们的团队</h2>
@@ -153,34 +82,34 @@
     </div>
   </div>
 
-  <div class="parallax-counter parallaxBg">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-3 col-xs-6">
-          <div class="counters">
-            <span class="counter">10629</span>
-            <h4>学员数</h4>
-          </div>
-        </div>
-        <div class="col-sm-3 col-xs-6">
-          <div class="counters">
-            <span class="counter">277</span>
-            <h4>一本录取率</h4>
-          </div>
-        </div>
-        <div class="col-sm-3 col-xs-6">
-          <div class="counters">
-            <span class="counter">78</span>
-            <h4>Team Members</h4>
-          </div>
-        </div>
-        <div class="col-sm-3 col-xs-6">
-          <div class="counters">
-            <span class="counter">109</span>
-            <h4>Awards</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- <div class="parallax-counter parallaxBg">
+       <div class="container">
+       <div class="row">
+       <div class="col-sm-3 col-xs-6">
+       <div class="counters">
+       <span class="counter">10629</span>
+       <h4>学员数</h4>
+       </div>
+       </div>
+       <div class="col-sm-3 col-xs-6">
+       <div class="counters">
+       <span class="counter">277</span>
+       <h4>一本录取率</h4>
+       </div>
+       </div>
+       <div class="col-sm-3 col-xs-6">
+       <div class="counters">
+       <span class="counter">78</span>
+       <h4>Team Members</h4>
+       </div>
+       </div>
+       <div class="col-sm-3 col-xs-6">
+       <div class="counters">
+       <span class="counter">109</span>
+       <h4>Awards</h4>
+       </div>
+       </div>
+       </div>
+       </div>
+       </div> -->
 </section>

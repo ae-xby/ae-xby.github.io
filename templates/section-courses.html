@@ -28,59 +28,19 @@
 
   <div class="title-v1">
     <h2>课堂风采</h2>
-    <p>寓教于乐的气氛</p>
   </div>
 
   <ul class="list-unstyled row portfolio-box-v1">
+    {% for obj in classroom %}
     <li class="col-sm-4">
-      <img class="img-responsive" src="{{ STATIC_URL }}/img/mockup/img1.jpg" alt="">
+      <img class="img-responsive" src="{{ STATIC_URL }}/{{ obj.img }}" alt="{{ obj.title }}">
       <div class="portfolio-box-v1-in">
-        <h3>Collective Package</h3>
-        <p>Web Design, Mock-up</p>
-        <a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>
+        <h3>{{ obj.title }}</h3>
+        <p>{{ obj.content }}</p>
+        <!--<a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>-->
       </div>
     </li>
-    <li class="col-sm-4">
-      <img class="img-responsive" src="{{ STATIC_URL }}/img/mockup/img2.jpg" alt="">
-      <div class="portfolio-box-v1-in">
-        <h3>Ahola Company</h3>
-        <p>Brand Design, UI</p>
-        <a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>
-      </div>
-    </li>
-    <li class="col-sm-4">
-      <img class="img-responsive" src="{{ STATIC_URL }}/img/mockup/img4.jpg" alt="">
-      <div class="portfolio-box-v1-in">
-        <h3>Allan Project</h3>
-        <p>Web Development, HTML5</p>
-        <a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>
-      </div>
-    </li>
-    <li class="col-sm-4">
-      <img class="img-responsive" src="{{ STATIC_URL }}/img/mockup/img4.jpg" alt="">
-      <div class="portfolio-box-v1-in">
-        <h3>Allan Project</h3>
-        <p>Web Development, HTML5</p>
-        <a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>
-      </div>
-    </li>
-
-    <li class="col-sm-4">
-      <img class="img-responsive" src="{{ STATIC_URL }}/img/mockup/img1.jpg" alt="">
-      <div class="portfolio-box-v1-in">
-        <h3>Collective Package</h3>
-        <p>Web Design, Mock-up</p>
-        <a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>
-      </div>
-    </li>
-    <li class="col-sm-4">
-      <img class="img-responsive" src="{{ STATIC_URL }}/img/mockup/img2.jpg" alt="">
-      <div class="portfolio-box-v1-in">
-        <h3>Ahola Company</h3>
-        <p>Brand Design, UI</p>
-        <a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>
-      </div>
-    </li>
+    {% endfor %}
   </ul>
 
   <div class="call-action-v1">

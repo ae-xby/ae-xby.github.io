@@ -57,7 +57,7 @@ slides:
       data-masterspeed: 700
     layers:
       - attrs:
-          src: /static/img/sliders/index/4a2d7c8d8038fb49395d0072d088161f_orig.jpg
+          src: /static/img/sliders/index/exposed-zoom-camera-lens-electronics-rear-side-close-up-picjumbo-com.jpg
           alt:
           data-bgfit: cover
           data-bgposition: center center
@@ -139,7 +139,7 @@ slides:
           data-endeasing: power1.easein
           data-captionhidden: off
           style: "z-index: 6"
-        content: 让进步看见
+        content: 让进步看得见
 
       - attrs:
           class: tp-caption re-title-v1 sft
@@ -160,17 +160,17 @@ slides:
 teams:
   - name: 石强
     img: /static/img/team/img2-md.jpg
-    title: 艺训播音组组长
+    title: 播音组组长
     desc: 拥有长达七年的艺考培训经验。曾江苏人民广播电台播音员。现蜻蜓FM签约主播。《变形金刚》宣传片配音。宝马X1广告配音；央视纪录片《丝路之门》配音及大量地方电视台节目配音
 
   - name: 刘井彬
     img: /static/img/team/img2-md.jpg
-    title: 艺训编导组组长
+    title: 编导组组长
     desc: 多年的传媒行业从业经验再加多年传媒艺考培训经验，造就了刘老师教学上深入浅出的功力。用高中生易于理解的语言，讲解传媒艺术深广的含义。在理论教学之外，刘老师还擅长对摄影等技术类专业的教学，是一位教学全面的老师。
 
   - name: 张寰宇
     img: /static/img/team/img2-md.jpg
-    title: 播音讲师，现广州电台主播
+    title: 广州电台主播
     desc: 前安徽电视台记者、主持人。拥有丰富的一线直播经验，和一线的教学经验，多年的一线主持工作经验是最殷实有力的教学基础。敏捷的思维能力、犀利的新闻观点具有亲和力的上课风格被得到了许多学生和家长的肯定。
 
   - name: 周子林
@@ -196,6 +196,12 @@ features:
     icon: diamond
     content: >-
       晓白杨在深度调研的基础上决定与大学的小课制度保持一致，采用小班教学。播音班12人。编导班15人。真正做到优质教学。
+
+  - title: 手把手微电影制作
+    icon: camcorder
+    content: >-
+      晓白杨拥有同类机构当中最专业的传媒设备，让学员的学习脱离纸上谈兵，真正的了解到传媒的博大精深。
+
   - title: 集训课程不只是身体的折磨
     icon: book-open
     content: >-
@@ -226,11 +232,6 @@ features:
     content: >-
       晓白杨选址在交通便利的昌岗地铁站，2号线与8号线换乘站交通便利。对面就是广州美术学院，艺术气息浓厚。教学环境简洁现代，充满中学生的青春气息。
 
-  - title: 最专业的传媒上镜、拍摄后期设备
-    icon: camcorder
-    content: >-
-      晓白杨拥有同类机构当中最专业的传媒设备，让学员的学习脱离纸上谈兵，真正的了解到传媒的博大精深。
-
   - title: 完备的学员档案、全面跟踪专业学习
     icon: heart
     content: >-
@@ -241,6 +242,11 @@ features:
     content: >-
       晓白杨为每一位学员量身定制自己的服装，并提供专业的形象建议。让学员由内而外的提升整体的专业素养。打造全面的艺考竞争力
 
+quotes: >-
+  <p>传媒之路道阻且长，但我们晓白杨的学员从不畏惧，<br />
+  因为有一句话深深的烙印在每一个人的心里：<br />
+  <span class="color-blue">不误现在，不畏将来！ </span></p>
+  <small>晓白杨艺训</small>
 
 # 课程信息
 course_intro: >-
@@ -344,8 +350,22 @@ colleges:
   - title: 华南农业大学
     image: /static/img/clients/national-geographic.png
 
+# 课堂风采
+classroom:
+  - title: 课堂1
+    img: img/mockup/img4.jpg
+    content: 编导课堂
+
+  - title: 课堂1
+    img: img/mockup/img1.jpg
+    content: 编导课堂
+
+  - title: 课堂1
+    img: img/mockup/img2.jpg
+    content: 编导课堂
+
+
 # internal usage, don't try to modifiy these
 others:
   latest_articles: get_latest_articles
 page: index
-
