@@ -149,6 +149,11 @@ def _new(args):
     preview(as_url(path + '.html'))
 
 
+def _start_server(args):
+    preview(as_url('index.html'))
+    start_server(args)
+
+
 def parse_command_line():
     # command line parse
     parser = argparse.ArgumentParser('XYBLOG')
@@ -161,7 +166,7 @@ def parse_command_line():
     parser_pub.set_defaults(func=lambda args: publish())
 
     parser_serve = subparser.add_parser("server", help="start http server")
-    parser_serve.set_defaults(func=lambda args: start_server(args))
+    parser_serve.set_defaults(func=lambda args: _start_server(args))
 
     parser_new = subparser.add_parser("new", help="new article")
     parser_new.set_defaults(func=_new)
