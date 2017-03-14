@@ -9,7 +9,7 @@
             <img {{ image.attrs|xmlattr }} />
           {% endwith %}
 
-          {% for layer in slide.layers if not layer.src %}
+          {% for layer in slide.layers[1:] %}
             <div {{ layer.attrs|xmlattr }}>{{ layer.content }}</div>
           {% endfor %}
 

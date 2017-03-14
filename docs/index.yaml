@@ -57,7 +57,7 @@ slides:
       data-masterspeed: 700
     layers:
       - attrs:
-          src: /static/img/sliders/index/exposed-zoom-camera-lens-electronics-rear-side-close-up-picjumbo-com.jpg
+          src: /static/img/bg/zoom.jpg
           alt:
           data-bgfit: cover
           data-bgposition: center center
