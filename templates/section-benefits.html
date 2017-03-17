@@ -5,7 +5,7 @@
   </div>
 
   <div class="row">
-    {% for objs in benefits|batch(3) %}
+    {% for objs in page.meta['高考优势']|batch(3) %}
     <div class="col-sm-6
                 content-boxes-v3
                 {% if loop.last %}{% else %} content-boxes-v3-right sm-margin-bottom-30{%endif %}">

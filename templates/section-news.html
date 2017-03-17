@@ -6,7 +6,7 @@
     </div>
 
     <div class="row news-v1">
-      {% for article in latest_articles %}
+      {% for article in latest_articles()[:3] %}
       <div class="col-md-4{% if loop.last %}{% else %} md-margin-bottom-40{% endif %}">
         <div class="news-v1-in">
           <img class="img-responsive" src="{{ STATIC_URL}}/{{ article.cover }}" alt="">

@@ -7,7 +7,7 @@
 
     <div class="row service-box-v1">
 
-      {% for course in courses %}
+      {% for course in page.meta['开设课程内容'] %}
       <div class="col-md-3 col-sm-6">
         <div class="service-block service-block-default">
           <i class="icon-custom icon-lg icon-bg-u rounded-x fa fa-{{ course.icon }}"></i>
@@ -31,7 +31,7 @@
   </div>
 
   <ul class="list-unstyled row portfolio-box-v1">
-    {% for obj in classroom %}
+    {% for obj in page.meta['课堂风采'] %}
     <li class="col-sm-4">
       <img class="img-responsive" src="{{ STATIC_URL }}/{{ obj.img }}" alt="{{ obj.title }}">
       <div class="portfolio-box-v1-in">

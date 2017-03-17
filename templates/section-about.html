@@ -25,7 +25,7 @@
 
     <div class="row">
       <div class="col-md-6 content-boxes-v3 margin-bottom-40">
-        {% for f in features[:4] %}
+        {% for f in page.meta['教学特色'][:4] %}
         <div class="clearfix margin-bottom-30">
           <i class="icon-custom icon-md rounded-x icon-bg-u icon-line icon-{{ f.icon }}"></i>
           <div class="content-boxes-in-v3">
@@ -62,7 +62,7 @@
       </div>
 
       <ul class="list-unstyled row">
-      {% for member in teams %}
+      {% for member in page.meta['团队介绍'] %}
         <li class="col-sm-3 col-xs-6 md-margin-bottom-30">
 
           <div class="team-img">

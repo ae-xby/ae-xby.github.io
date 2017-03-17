@@ -2,7 +2,7 @@
   <div class="fullscreenbanner-container">
     <div class="fullscreenbanner">
       <ul>
-        {% for slide in slides %}
+        {% for slide in page.meta['幻灯片'] %}
 
         <li data-title="{{ slide.title }}" {{ slide.attrs|xmlattr }}>
           {% with image = slide.layers[0] %}
