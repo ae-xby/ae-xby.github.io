@@ -4,7 +4,7 @@ import os.path
 
 DEBUG = True
 
-PROJECT_PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+PROJECT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 root = lambda x: os.path.join(PROJECT_PATH, x)
 
 DATE_FORMAT = '%Y-%m-%d'
