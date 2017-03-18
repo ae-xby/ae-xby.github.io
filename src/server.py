@@ -10,6 +10,8 @@ import tornado.websocket
 import tornado.autoreload
 from tornado.log import app_log
 
+from git import Repo
+
 import autoreload
 import settings
 from core import list_pages, Page, generate_all
@@ -21,6 +23,8 @@ sys.setdefaultencoding('utf-8')
 
 ASSETS_PATH = os.path.join(settings.OUTPUT_PATH, 'assets')
 STATIC_PATH = os.path.join(settings.OUTPUT_PATH, 'static')
+
+s_repo = Repo(settings.PROJECT_PATH)
 
 clients = []
 
@@ -64,11 +68,17 @@ class EditArticleHandler(tornado.web.RequestHandler):
         if not content:
             self.write('empty page. terminated!')
         else:
-            meta, content = Page.parse(content)
+            meta, content = Page.parse(content.replace('\r\n', '\n'))
             filename = os.path.join(settings.DOCS_PATH, fp) if fp else None
             page = Page(filename=filename, meta=meta, content=content)
             page.save()
             reload_hook()
+
+            # git
+            print('docs/' + page.relpath)
+            # s_repo.index.add('docs/' + page.relpath)
+            # s_repo.index.commit(
+            #     '{} article {}'.format('updated' if fp else 'added', page.relpath))
             self.redirect(page.permalink)
 
 
@@ -77,6 +87,8 @@ class DelArticleHandler(tornado.web.RequestHandler):
         filename = os.path.join(settings.DOCS_PATH, fp)
         if os.path.exists(filename):
             os.unlink(filename)
+        s_repo.index.remove(fp)
+        s_repo.index.commit("remove {}".format(fp))
         self.redirect('/a/list')
 
 
