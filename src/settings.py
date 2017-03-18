@@ -36,7 +36,7 @@ TEL = "020 1234 123"
 EMAIL = "info@xby.com"
 WEIXIN_GZH_QR = "img/team/qrcode.jpeg"
 WEIXIN_GZH = "gz-xby"
-LOGO_URL = 'img/team/qrcode.jpeg'
+LOGO_URL = 'img/team/logo.png'
 
 DEFAULT_AUTHOR = '刘老师'
 DEFAULT_KEYWORDS = "晓白杨精品艺训班"
