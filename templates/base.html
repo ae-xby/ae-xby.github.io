@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ description }}" />
+    <meta name="description" content="{{ page.meta['文章描述'] }}" />
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico">
 
@@ -15,13 +15,13 @@
 
     <!--  Meta for OpenGraph -->
     <meta property="og:site_name" content="{{ og_site_name }}">
-    <meta property="og:title" content="{{ title }}">
+    <meta property="og:title" content="{{ page.meta['文章标题'] }}">
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{ BASE_URL }}{{ url }}">
-    <meta property="og:description" content="{{ description }}">
+    <meta property="og:description" content="{{ page.meta['文章描述'] }}">
     <!-- End -->
 
-    <title>{{ title }}</title>
+    <title>{{ page.meta['文章标题'] }} | 晓白杨艺训</title>
 
     <!-- Web Fonts -->
 
