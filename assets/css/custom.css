@@ -1,8 +1,28 @@
 /* Add here all your css styles (customizations) */
-.btn-u {
+
+.qrcode {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    text-align: center;
 }
 
-.re-btn-brd {
-  background: none;
-  border: solid 1px #fff;
+.service-box-v1 ul {
+    padding: 0 16px;
+}
+
+
+@media only screen and (max-device-width: 480px) {
+    .re-title-v2 {
+        font-size: 24px;
+    }
+
+    .qrcode {
+        width: 360px;
+        height: 360px;
+    }
+
+    .revolution-ch2 {
+        font-size: 8px;
+    }
 }
