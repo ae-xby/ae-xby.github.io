@@ -54,9 +54,6 @@
 
 
     
-    <!-- Style Switcher -->
-    <link rel="stylesheet" href="/static/plugins/style-switcher/style-switcher.css">
-    
 
 
   </head>
@@ -878,18 +875,12 @@ id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-
 
 
     
-    <script type="text/javascript">
-     var ws = new WebSocket("ws://" + "" + ":" + "8888" + "/refresh");
-     ws.onopen = function () { ws.send("ready"); }
-     ws.onmessage = function (evt) {
-       console.log("received: " + evt.data);
-       if (evt.data == "refresh") {
-        location.reload();
-       }
-     };
-    </script>
-    
 
+    
+    <script type="text/javascript">
+     var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+     document.write(unescape("%3Cspan id='cnzz_stat_icon_1261484799'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261484799%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+    </script>
     
 
   </body>
