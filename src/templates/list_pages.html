@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="ui container">
+  <table class="ui compact celled table">
+    <thead>
+      <tr>
+        <th>URL</th>
+        <th>文章标题</th>
+        <th>状态</th>
+        <th>创建于</th>
+        <th>动作</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for page in pages %}
+    <tr>
+      <td>
+        <i class="linkify outline icon"></i>
+        <a href="{{ page.permalink }}" target="_blank"> {{ page.permalink }} </a>
+      </td>
+      <td>{{ page.meta.get(u'文章标题', '') }}</td>
+      <td>{% if page.meta.get(u'是否发布', True) %}
+        已发布
+        <a href="">|下线</a>
+        {% else %}
+        未发布
+        <a href="">|上线</a>
+        {% end %}</td>
+      <td>{{ page.meta[u'创建于'] }}</td>
+      <td>
+        <a href="/a/{{ page.relpath }}/edit"><i class="icon edit"></i> 编辑</a> |
+        <a class="del" href="/a/{{ page.relpath }}/del"><i class="icon trash"></i> 删除</a>
+      </td>
+    </tr>
+    {% end %}
+
+    <tfoot class="full-width">
+      <tr>
+        <th colspan="5">
+          <a class="ui right floated primary button" href="/a/new">新增文章</a>
+          <div class="ui small button">
+            一键发布
+          </div>
+        </th>
+      </tr>
+    </tfoot>
+    </tbody>
+
+  </table>
+
+</div>
+
+
+
+{% end %}
+
+{% block footer %}
+<script>
+ $('.del').click(function(event) {
+   if (window.confirm("你确认要删除吗？")) {
+   } else {
+     event.preventDefault();
+   }
+ });
+</script>
+{% end%}
