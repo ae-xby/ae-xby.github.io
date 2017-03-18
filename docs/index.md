@@ -78,18 +78,19 @@
           class: tp-caption re-title-v2 sft start
           data-x: center
           data-hoffset: 0
-          data-y: 150
-          data-speed: 700
-          data-start: 2000
-          data-easing: easeOutBack
+          data-y: 130
+          data-speed: 1500
+          data-start: 500
+          data-easing: Back.easeInOut
+          data-endeasing: Power1.easeIn
           data-endspeed: 300
-        content: 晓白杨
+        content: <h4 class="re-title-v2">晓白杨</h4>
 
       - attrs:
-          class: tp-caption re-title-v2 sft
+          class: tp-caption sft
           data-x: center
           data-hoffset: 0
-          data-y: 250
+          data-y: 260
           data-speed: 500
           data-start: 3000
           data-easing: power4.easeinout
@@ -97,7 +98,7 @@
           data-endeasing: power1.easein
           data-captionhidden: off
           style: "z-index: 6"
-        content: 专注小班精品教学
+        content: <h4 class="re-title-v2">专注小班精品教学</h4>
 
       - attrs:
           class: tp-caption re-title-v2 sft
@@ -112,11 +113,9 @@
           data-captionhidden: off
           style: "z-index: 6"
         content: >-
-          <span class="page-scroll">
-          <a class="btn btn-u-orange color-light" href="">www</a>
-          </span>
+          <span class="page-scroll"> </span>
 
-  - title: 首页第二张图
+  - title: 小班精品教学
     attrs:
       data-transition: slideup
       data-slotamount: 5
@@ -137,13 +136,13 @@
           data-start: 1500
           data-easing: back.easeinout
           data-endspeed: 300
-        content: 让老师看见
+        content: <h2 class="re-title-v2">1个老师,15个学生</h4>
 
       - attrs:
-          class: tp-caption re-title-v2 sft
+          class: tp-caption sft
           data-x: center
           data-hoffset: 0
-          data-y: 250
+          data-y: 220
           data-speed: 500
           data-start: 3000
           data-easing: power4.easeinout
@@ -151,13 +150,13 @@
           data-endeasing: power1.easein
           data-captionhidden: off
           style: "z-index: 6"
-        content: 让进步看得见
+        content: <h4 class="re-title-v2">让进步看得见</h4>
 
       - attrs:
-          class: tp-caption re-title-v1 sft
+          class: tp-caption sft
           data-x: center
           data-hoffset: 0
-          data-y: 400
+          data-y: 340
           data-speed: 800
           data-start: 3500
           data-easing: power4.easeinout
@@ -165,28 +164,44 @@
           data-endeasing: power1.easein
           data-captionhidden: off
           style: "z-index: 6"
-        content: '<img alt="" src="/static/img/contents/qrcode.png"/>'
+        content: >-
+          <span class="revolution-ch2">获取最新的消息请关注我们的公众号</span>
+
+      - attrs:
+          class: tp-caption sft
+          data-x: center
+          data-hoffset: 0
+          data-y: 420
+          data-speed: 800
+          data-start: 3500
+          data-easing: power4.easeinout
+          data-endspeed: 300
+          data-endeasing: power1.easein
+          data-captionhidden: off
+          style: "z-index: 6"
+        content: >-
+          <img class="qrcode" alt="晓白杨公众号" src="/static/img/team/qrcode.jpeg"/>
 
 
 # 团队介绍
 团队介绍:
   - name: 石强
-    img: /static/img/team/img2-md.jpg
+    img: /static/img/team/石强.jpg
     title: 播音组组长
     desc: 拥有长达七年的艺考培训经验。曾江苏人民广播电台播音员。现蜻蜓FM签约主播。《变形金刚》宣传片配音。宝马X1广告配音；央视纪录片《丝路之门》配音及大量地方电视台节目配音
 
   - name: 刘井彬
-    img: /static/img/team/img2-md.jpg
+    img: /static/img/team/刘井彬.jpg
     title: 编导组组长
     desc: 多年的传媒行业从业经验再加多年传媒艺考培训经验，造就了刘老师教学上深入浅出的功力。用高中生易于理解的语言，讲解传媒艺术深广的含义。在理论教学之外，刘老师还擅长对摄影等技术类专业的教学，是一位教学全面的老师。
 
   - name: 张寰宇
-    img: /static/img/team/img2-md.jpg
+    img: /static/img/team/张寰宇.jpg
     title: 广州电台主播
     desc: 前安徽电视台记者、主持人。拥有丰富的一线直播经验，和一线的教学经验，多年的一线主持工作经验是最殷实有力的教学基础。敏捷的思维能力、犀利的新闻观点具有亲和力的上课风格被得到了许多学生和家长的肯定。
 
   - name: 周子林
-    img: /static/img/team/img2-md.jpg
+    img: /static/img/team/周子林.jpg
     title: 南方电视台编导、出镜记者
     desc: 新闻媒体的大量实践带入到艺考教学的课堂中让同学们脱离空谈，针对各种实际问题来出谋划策。获得了同学们一致好评。
 
@@ -254,7 +269,7 @@
     content: >-
       晓白杨为每一位学员量身定制自己的服装，并提供专业的形象建议。让学员由内而外的提升整体的专业素养。打造全面的艺考竞争力
 
-鼓励语句: >-
+激励语句: >-
   <p>传媒之路道阻且长，但我们晓白杨的学员从不畏惧，<br />
   因为有一句话深深的烙印在每一个人的心里：<br />
   <span class="color-blue">不误现在，不畏将来！ </span></p>
@@ -275,18 +290,19 @@
       文化经济、公共事业、制片管理等
     content: >-
       命题演讲、视听语言分析、艺术概论、命题写作及技巧、编讲故事、即兴创作与评述、
-      广播电视编导专业考试练习、语言表达、中外影视分析、影视基础知识等。
+      中外影视分析
     career: >-
-      编导、导演是各类电影电视节目的总指挥，该专业重点培养这方面的人才。一台节目的好坏，编导的能力在其中起到了
-      很关键的作用，编导、导演是整个节目的核心。因此编导也具有核心的地位，有才华的编导一定会成为各个电视台争抢
-      的焦点。这是一个充满创造性和挑战性的职业，虽然道路布满荆棘，但闪烁光环的前景仍然吸引了不少人投入其中。
+      编导、导演是各类电影电视节目的总指挥。一台节目的好坏，编导在其中起到关键的作用，
+      是整个节目的核心。因此有才华的编导成为各个电视台的焦点。这是一个充满创造性和挑战性的职业，
+      但闪烁光环的前景仍然吸引了不少人投入其中。
+
   - title: 播音主持类
     icon: microphone
     majors: >-
       播音主持（双语）、播音主持（普粤）、国际交流、配音艺术等。
     content: >-
-      普通话发音与发声、语言表达技巧、指定稿件播读与评述、文学作品朗读、主持人艺术技巧、
-      节目策划与模拟主持、才艺展示、演讲与辩论等
+      普通话发音与发声、语言表达技巧、稿件播读与评述、文学作品朗读、主持人艺术技巧、
+      节目策划与模拟主持
     career: >-
       随着传媒和大众娱乐的不断发展，各地各级电视台之间的竞争也在不断激化，
       有能力、有个性的播音员和节目主持人成为了电视台、电台争夺的焦点。
@@ -297,31 +313,25 @@
     majors: >-
       影视表演、话剧表演、时装表演、音乐剧表演、空乘等
     content: >-
-      朗诵（作品选择, 朗诵技巧等）、
-      声乐（演唱技巧, 发声方法等）、
-      表演（小品表演, 即兴表演等）、
-      形体（身体协调, 舞蹈等）
+      朗诵: 作品选择, 朗诵技巧、
+      声乐: 演唱技巧, 发声方法、
+      表演: 小品表演, 即兴表演、
+      形体: 身体协调, 舞蹈
     career: >-
-      随着传媒业的发展，媒体对表演类人才的需求量更是逐年剧增，表演毕业生就
-      业较为灵活。文化产业，电影、电视剧、广告等事业为影视表演专业的人才提供了
-      各种各样的岗位，本专业毕业生可以在影视剧制作中心、电视台、剧院或剧团、宣
-      传文教部门、企事业单位和高校从事表演，宣传，教学等工作。
+      随着传媒业的发展,表演相关专业毕业生就业较为灵活。文化产业，电影、电视剧、
+      广告等事业为影视表演专业的人才提供了各种各样的岗位，本专业毕业生可以在影视剧制作中心、
+      电视台、剧院或剧团、宣 传文教部门、企事业单位和高校从事表演，宣传，教学等工作。
   - title: 摄影类
     icon: camera
     majors: >-
       数字媒体艺术、新媒体艺术、电影制作、剪辑、摄影摄像、图片摄影、照明艺术、
       电视摄像、商业摄影、数字电影技术等
     content: >-
-      色彩基础知识、动漫技法、角色造型设计模拟现场拍摄、剧本创作、绘画基础、分镜头改编、
-      影视后期处理、命题写作、摄影作品分析、电影图形处理、摄影基础知识、
-      影视作品分析、艺术鉴赏等。
+      色彩基础知识、模拟现场拍摄、分镜头改编、命题写作、摄影作品分析、摄影基础知识
     career: >-
-      高校开设摄影专业的还不多，但市场需求较大。上可进入艺术的象牙塔，下可
-      丰衣足食受人尊重。摄影作为一个重要的艺术种类长期的被大众所关注并应用在诸
-      多方面。例如商业摄影、人像摄影、教辅图书等方面，都离不开摄影。作为一名摄
-      影师，以时尚、个性且富有内涵的形象气质与他们托起相机时的专注和潇洒，得到
-      了越来越多人的尊敬和崇拜。
-
+      高校开设摄影专业的还不多，但市场需求较大。上可进入艺术的象牙塔，下可丰衣足食受人尊重。
+      例如商业摄影、人像摄影、教辅图书等都离不开摄影。作为一名摄影师，以时尚、
+      个性且富有内涵的形象与他们托起相机时的专注和潇洒，得到越来越多人的尊敬和崇拜。
 # 开设的课程分类
 课程分类:
     - 编导类
@@ -331,54 +341,58 @@
 
 # 学生风采
 学生风采:
-  - name: 王茗
-    college: 北京师范大学珠海分校
-    major: 电影学专业
-    category: 编导类
-    avatar: /static/img/students/wang-min.jpg
-    comment: 爱上编导，爱上晓白杨.
+  - 姓名: 王茗
+    录取学院: 北京师范大学珠海分校
+    专业: 电影学专业
+    头像: img/testimonials/img6.jpg
+    留言: 爱上编导，爱上晓白杨.
 
   - name: 黄琦玲
-    college: 浙江传媒学院
-    major: 录音专业
-    category: 播音主持类
-    avatar: /static/img/students/huang-qi-lin.jpg
-    comment: 爱上编导，爱上晓白杨.
+    录取学院: 浙江传媒学院
+    专业: 录音专业
+    头像: img/testimonials/user.jpg
+    留言: 爱上编导，爱上晓白杨.
 
-  - name: 王茗
-    college: 北京师范大学珠海分校
-    major: 电影学专业
-    category: 影视类
-    avatar: /static/img/students/wang-min.jpg
-    comment: 爱上编导，爱上晓白杨.
 
-  - name: 黄琦玲
-    college: 浙江传媒学院
-    major: 录音专业
-    category: 摄影类
-    avatar: /static/img/students/huang-qi-lin.jpg
-    comment: 爱上编导，爱上晓白杨.
+家长感言:
+  - 姓名: 张姓家长
+    留言: 感谢晓白杨艺训，一个学期的学习，让我的孩子备战充分，也让他考上了理想的大学。
+  - 姓名: 某传媒大学
+    留言: 晓白杨为我们提供了优秀的生源，是一个值得托付的地方
+
 
 # 合作学院
 合作学院:
   - title: 暨南大学
-    image: /static/img/clients/national-geographic.png
+    logo: img/clients/general-electric.png
   - title: 华南农业大学
-    image: /static/img/clients/national-geographic.png
+    logo: img/clients/fred-perry.png
 
 # 课堂风采
 课堂风采:
-  - title: 课堂1
-    img: img/mockup/img4.jpg
+  - title: 晓白杨前台
+    img: img/team/晓白杨前台.jpg
     content: 编导课堂
 
-  - title: 课堂1
-    img: img/mockup/img1.jpg
+  - title: 晓白杨课堂1
+    img: img/team/晓白杨课堂1.jpg
     content: 编导课堂
 
-  - title: 课堂1
-    img: img/mockup/img2.jpg
+  - title: 实践摄影器材
+    img: img/team/实践摄影器材.jpg
+    content: 编导课堂
+
+  - title: 信息栏
+    img: img/team/信息栏.jpg
+    content: 编导课堂
+
+  - title: 公共区域2
+    img: img/team/公共区域2.jpg
+    content: 编导课堂
+
+  - title: 地铁站对面的江南坊2
+    img: img/team/地铁站对面的江南坊.jpg
     content: 编导课堂
 ---
 
-
+# 我是正文内容
