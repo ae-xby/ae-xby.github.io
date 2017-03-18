@@ -37,8 +37,8 @@ class Page(object):
 
     def build_filename(self):
         return os.path.join(settings.DOCS_PATH,
-                            '/'.join(self.meta.get(u'分类', 'articles'),
-                                     slugify(self.meta[u'标题'] + '.md')))
+                            '/'.join([self.meta.get(u'分类', 'articles'),
+                                      slugify(self.meta[u'文章标题']) + '.md']))
 
     @property
     def output_path(self):
@@ -53,19 +53,22 @@ class Page(object):
     def permalink(self):
         return '/{}.html'.format(self.output_path)
 
-    @classmethod
-    def load(self, filename):
+    @staticmethod
+    def load(filename):
         if not filename.startswith(settings.DOCS_PATH):
             filename = os.path.join(settings.DOCS_PATH, filename)
-        p = Page(filename)
-        p.parse()
-        return p
+        with open(filename) as fb:
+            meta, content = Page.parse(fb.read())
+        return Page(filename=filename, meta=meta, content=content)
 
+    @classmethod
+    def new_from_content(self, text):
+        meta, content = Page.parse(text)
+        return Page(filename=None, meta=meta, content=content)
 
-    def parse(self):
-        with open(self.filename) as fb:
-            ctx, self.content = _meta.parse(fb.read())
-            self.meta.update(ctx)
+    @staticmethod
+    def parse(content):
+        return _meta.parse(content)
 
     def _dump_to_file(self):
         makedir(os.path.dirname(self.filename))

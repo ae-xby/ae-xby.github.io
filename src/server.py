@@ -12,7 +12,7 @@ from tornado.log import app_log
 
 import autoreload
 import settings
-from core import list_pages, Page
+from core import list_pages, Page, generate_all
 from forms import PageForm
 
 
@@ -26,7 +26,7 @@ clients = []
 
 def reload_hook():
     try:
-        # generate()
+        generate_all()
         # map(lambda c: c.write_message('refresh'), clients)
         pass
     except Exception as e:
@@ -45,21 +45,39 @@ class EditArticleHandler(tornado.web.RequestHandler):
 
     def get(self, fp=None):
         if fp is None:
-            page = Page('new-filename.md', meta={
+            page = Page(filename=None, meta={
                 u'创建于': datetime.datetime.now().strftime(settings.DATETIME_FORMAT),
                 u'分类': 'articles',
                 u'文章标题': u'文章的标题',
                 u'文章关键字': u'[SEO] 文章的关键字',
                 u'作者': u'作者',
                 u'模板': 'article.html',
+                u'是否发布': True,
                 u'文章描述': u'[SEO] 文章的描述'
-            }, content=u'# 我是文章标题')
+            }, content=u'\n\n# 我是文章标题')
         else:
             page = Page.load(fp)
         self.render('templates/edit_page.html', page=page)
 
-    def post(self):
-        pass
+    def post(self, fp=None):
+        content = self.get_argument('page', '')
+        if not content:
+            self.write('empty page. terminated!')
+        else:
+            meta, content = Page.parse(content)
+            filename = os.path.join(settings.DOCS_PATH, fp) if fp else None
+            page = Page(filename=filename, meta=meta, content=content)
+            page.save()
+            reload_hook()
+            self.redirect(page.permalink)
+
+
+class DelArticleHandler(tornado.web.RequestHandler):
+    def get(self, fp):
+        filename = os.path.join(settings.DOCS_PATH, fp)
+        if os.path.exists(filename):
+            os.unlink(filename)
+        self.redirect('/a/list')
 
 
 class ListArticlesHandler(tornado.web.RequestHandler):
@@ -88,6 +106,7 @@ def make_app(config):
         (r"/a/list", ListArticlesHandler),
         (r"/a/new", EditArticleHandler),
         (r"/a/(.+)/edit", EditArticleHandler),
+        (r"/a/(.+)/del", DelArticleHandler),
         (r"/assets/(.*)$", tornado.web.StaticFileHandler,
          {"path": settings.ASSETS_PATH}
         ),
