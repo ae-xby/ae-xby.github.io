@@ -4,7 +4,7 @@ import os
 import datetime
 
 import argparse
-from core import generate_all
+from core import generate_all, list_pages
 from utils import preview, as_url
 from server import start_server
 import settings
@@ -13,6 +13,30 @@ import settings
 def _start_server(args):
     # preview(as_url('index.html'))
     start_server(args)
+
+
+def clean_files(path, exts):
+    for root, dirs, files in os.walk(path):
+        for fn in files:
+            for ext in exts:
+                if fn.endswith(ext):
+                    ff = os.path.join(root, fn)
+                    print('unlink file {}'.format(ff))
+                    os.unlink(ff)
+
+
+def publish(args):
+    settings.DEBUG = False
+    os.chdir('output')
+    clean_files('articles', ['.html'])
+    clean_files('static/dist', ['.css', '.js'])
+    map(lambda x: x.output_html(), filter(lambda x: x.meta.get(u'是否发布',
+        True), list_pages()))
+    os.system('git add *')
+    os.system('git add -u')
+    os.system('git commit -m "update sites on {}"'.format(
+        datetime.datetime.now().strftime(settings.DATETIME_FORMAT)))
+    os.system('git push')
 
 
 def parse_command_line():
@@ -24,7 +48,7 @@ def parse_command_line():
     parser_gen.set_defaults(func=lambda args: generate_all())
 
     parser_pub = subparser.add_parser("pub", help="publish to git repo")
-    parser_pub.set_defaults(func=lambda args: publish())
+    parser_pub.set_defaults(func=publish)
 
     parser_serve = subparser.add_parser("server", help="start http server")
     parser_serve.set_defaults(func=lambda args: _start_server(args))

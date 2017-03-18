@@ -9,7 +9,7 @@ from jac import CompressorExtension
 from slugify import slugify
 
 import settings
-from utils import makedir
+from utils import makedir, get_ip
 
 markdown = mistune.Markdown()
 jinja_env = Environment(
@@ -20,6 +20,8 @@ jinja_env.compressor_output_dir = settings.STATIC_OUTPUT_PATH
 jinja_env.compressor_static_prefix = settings.STATIC_PREFIX
 jinja_env.compressor_source_dirs = settings.STATIC_SOURCE_DIRS
 jinja_env.filters['slugify'] = slugify
+
+settings.SERVER_IP = get_ip()
 
 
 class Page(object):
