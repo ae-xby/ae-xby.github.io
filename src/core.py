@@ -24,43 +24,85 @@ jinja_env.filters['slugify'] = slugify
 
 class Page(object):
 
-    def __init__(self, filename):
-        self.filename = filename
-        self.meta = {}
-        self.content = ''
-        self.parse()
-        self.bn = os.path.splitext(os.path.relpath(filename, settings.DOCS_PATH))[0]
-        self.meta['url'] = '/{}.html'.format(self.bn)
-        self.meta['html_file'] = os.path.join(settings.OUTPUT_PATH, self.meta['url'][1:])
-        self.meta['filename'] = filename
+    def __init__(self, filename, content='', meta={}):
+        self.meta = meta
+        self.content = content
+        self._filename = filename
+
+    @property
+    def filename(self):
+        if self._filename is None:
+            return self.build_filename()
+        return self._filename
+
+    def build_filename(self):
+        return os.path.join(settings.DOCS_PATH,
+                            '/'.join(self.meta.get(u'分类', 'articles'),
+                                     slugify(self.meta[u'标题'] + '.md')))
+
+    @property
+    def output_path(self):
+        bn, _ = os.path.splitext(self.relpath)
+        return bn
+
+    @property
+    def relpath(self):
+        return os.path.relpath(self.filename, settings.DOCS_PATH)
+
+    @property
+    def permalink(self):
+        return '/{}.html'.format(self.output_path)
+
+    @classmethod
+    def load(self, filename):
+        if not filename.startswith(settings.DOCS_PATH):
+            filename = os.path.join(settings.DOCS_PATH, filename)
+        p = Page(filename)
+        p.parse()
+        return p
+
 
     def parse(self):
         with open(self.filename) as fb:
-            self.meta, self.content = _meta.parse(fb.read())
+            ctx, self.content = _meta.parse(fb.read())
+            self.meta.update(ctx)
 
-    def dump(self):
-        with open(self.filename) as fb:
-            fb.write('---\n')
-            fb.write(yaml.dumps(self.meta))
-            fb.write('---\n')
-            fb.write(self.content)
+    def _dump_to_file(self):
+        makedir(os.path.dirname(self.filename))
+        with open(self.filename, 'wb') as fb:
+            fb.write(self.text)
+
+    def save(self):
+        self._dump_to_file()
+
+    @property
+    def raw_meta(self):
+        return yaml.dump(self.meta, default_flow_style=False,
+                         encoding="utf-8", allow_unicode=True)
+
+    @property
+    def raw_content(self):
+        return self.content
+
+    @property
+    def text(self):
+        return '---\n{}---\n{}'.format(self.raw_meta, self.raw_content)
 
     def output_html(self):
-        fn = self.meta['html_file']
+        fn = os.path.join(settings.OUTPUT_PATH, self.output_path + '.html')
         makedir(os.path.dirname(fn))
         with open(fn, 'wb') as fb:
-            fb.write(self._render().encode('utf8'))
-            print("Generated {}".format(self.meta['url']))
+            fb.write(self.render_html())
+            print("Generated {}".format(self.permalink))
 
 
-    def _render(self):
+    def render_html(self):
+
         return jinja_env.get_template(
-            self.meta['layout']).render(
-                page=self, **default_context())
-
-    @classmethod
-    def render(self, filename):
-        return Page(filename)._render()
+            self.meta[u'模板']).render(
+                page=self,
+                content=markdown(self.content),
+                **default_context())
 
 
 def default_context():
@@ -77,14 +119,14 @@ def list_source_files(path=settings.DOCS_PATH):
 
 
 def list_pages():
-    return map(Page, list_source_files())
+    return map(Page.load, list_source_files())
 
 
 def latest_articles():
     articles = filter(lambda x: 'index' not in x,
                          list_source_files(os.path.join(settings.DOCS_PATH, 'articles')))
-    pages = map(Page, articles)
-    return sorted(pages, key=lambda p: p.meta['created'], reverse=True)
+    pages = map(Page.load, articles)
+    return sorted(pages, key=lambda p: p.meta[u'创建于'], reverse=True)
 
 
 def generate_all():
