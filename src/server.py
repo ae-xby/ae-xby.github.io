@@ -54,6 +54,7 @@ class EditArticleHandler(tornado.web.RequestHandler):
                 u'分类': 'articles',
                 u'文章标题': u'文章的标题',
                 u'文章关键字': u'[SEO] 文章的关键字',
+                u'封面': 'img/contents/default.jpg',
                 u'作者': u'作者',
                 u'模板': 'article.html',
                 u'是否发布': True,
