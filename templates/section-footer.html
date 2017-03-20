@@ -57,20 +57,22 @@
         <div class="col-md-3 md-margin-bottom-40">
           <div class="headline"><h2 class="heading-sm">联系我们</h2></div>
           <address class="md-margin-bottom-40">
-                  <i class="fa fa-home"></i>{{ ADDRESS }}<br />
-                  <i class="fa fa-phone"></i>电话: {{ TEL }} <br />
+            <i class="fa fa-phone"></i>电话: {{ TEL }} <br />
             <i class="fa fa-globe"></i>网站: <a href="www.xiaobaiyangyixun.com">www.xiaobaiyangyixun.com</a> <br />
-            <i class="fa fa-weixin"></i>微信号: <a href="#">{{ WEIXIN_GZH }}</a> <br/>
-            <i class="fa fa-envelope"></i>Email: <a href="{{ EMAIL }}">{{ EMAIL }}</a>
+            <i class="fa fa-weixin"></i>微信号: <a href="{{ STATIC_URL }}/{{ WEIXIN_GZH_QR }}" target="blank">{{ WEIXIN_GZH }}</a> <br/>
+            <i class="fa fa-envelope"></i>Email: <a href="{{ EMAIL }}">{{ EMAIL }}</a><br />
+            <i class="fa fa-map"></i>
+              <a target="blank" href="{{ ROUTE_GUIDE }}">百度地图路线指引</a> <br />
+            <i class="fa fa-building"></i>{{ ADDRESS }} <br />
           </address>
 
           <!-- Social Links -->
-          <ul class="social-icons">
-            <li><a href="#" data-original-title="Sina" class="rounded-x fa fa_weibo"></a></li>
-            <li><a href="#" data-original-title="Weixin" class="rounded-x fa fa_weixin"></a></li>
-            <li><a href="#" data-original-title="Goole Plus" class="rounded-x social_googleplus"></a></li>
-            <li><a href="#" data-original-title="Linkedin" class="rounded-x social_linkedin"></a></li>
-          </ul>
+          <!-- <ul class="social-icons">
+               <li><a href="#" data-original-title="Sina" class="rounded-x fa fa_weibo"></a></li>
+               <li><a href="#" data-original-title="Weixin" class="rounded-x fa fa_weixin"></a></li>
+               <li><a href="#" data-original-title="Goole Plus" class="rounded-x social_googleplus"></a></li>
+               <li><a href="#" data-original-title="Linkedin" class="rounded-x social_linkedin"></a></li>
+               </ul> -->
           <!-- End Social Links -->
         </div>
         <!-- End Address -->
@@ -82,9 +84,13 @@
     <div class="container">
       <p class="text-center">
         2017 &copy; All Rights Reserved.
-        <a target="_blank" href="https://www.xiaobaiyangyixun.com">广州晓白杨艺训</a>
+        <a target="_blank" href="https://www.xiaobaiyangyixun.com">广州晓白杨传媒艺训</a>
       </p>
       <p class="text-center" id="cnzz_stat_icon_{{ CNZZ }}"></p>
+      <p class="text-center small">
+        网站制作: <a href="https://yxy.io/images/wechat.jpeg" target="blank">yxy</a>
+      </p>
+
     </div>
   </div><!--/copyright-->
 

@@ -31,11 +31,12 @@ LANGUAGE = "cn"
 THEME_COLOR = 'blue'
 STYLE_SWITCHER_ON = True
 
-ADDRESS = u'广州市海珠区昌岗江南坊5楼'
-TEL = "020 1234 123"
+ADDRESS = u'广州市海珠区昌岗东路252号江南坊5楼元空间520室'
+ROUTE_GUIDE = 'http://j.map.baidu.com/nZN0B'
+TEL = "020-84108722"
 EMAIL = "info@xby.com"
 WEIXIN_GZH_QR = "img/team/qrcode.jpeg"
-WEIXIN_GZH = "gz-xby"
+WEIXIN_GZH = u"晓白杨传媒艺训"
 LOGO_URL = 'img/team/logo.png'
 
 DEFAULT_AUTHOR = '刘老师'
