@@ -36,11 +36,13 @@
 <script type="text/javascript">
  $(function() {
 
-   CodeMirror.fromTextArea(document.getElementById("page"), {
+   var cm = CodeMirror.fromTextArea(document.getElementById("page"), {
      mode: "yaml-frontmatter",
      lineSeparator: '\n',
+     viewportMargin: Infinity,
      lineNumbers: true
    });
+   cm.setSize('100%', 700);
 
  });
 </script>

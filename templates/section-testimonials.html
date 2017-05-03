@@ -21,10 +21,10 @@
               <div class="item{% if loop.first %} active{% endif %}">
                 <p>{{ student['留言'] }}</p>
                 <div class="testimonial-info">
-                  <img class="rounded-x" src="{{ STATIC_URL }}/{{ student['头像'] }}" alt="{{ student['姓名'] }}">
+                  <img class="rounded-x" 
+                       src="{{ STATIC_URL }}/{% if student['头像'] %}student['头像']{% else %}img/user.jpg {% endif %}" alt="{{ student['姓名'] }}">
                   <span class="testimonial-author">
                     {{ student['姓名'] }}
-                    <em>{{ student['录取学院'] }}, {{ student['专业']}}</em>
                   </span>
                 </div>
               </div>
